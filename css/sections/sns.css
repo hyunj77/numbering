@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Section — SNS
+   소개 영역(제목/선/설명/아이콘) + 이미지 3장 갤러리. 갤러리는 1155×472 비율을 유지하며
+   이미지·원형 버튼 위치를 % 로 지정 (1920에서 시안 좌표와 일치)
+   ========================================================================== */
+
+.sns {
+  padding-top: var(--sns-pt);
+  padding-bottom: var(--sns-pb);
+  background: var(--color-white);
+}
+
+/* 콘텐츠 폭 1453px (1920 기준 left 220px). 좁아지면 좌우 --sns-pad 확보 */
+.sns__inner {
+  display: grid;
+  grid-template-columns: var(--sns-cols);
+  width: min(var(--sns-w), calc(100% - 2 * var(--sns-pad)));
+  margin-left: max(var(--sns-pad), calc(50% - var(--sns-half-offset)));
+}
+
+/* ---------- 소개 영역 ---------- */
+.sns__intro {
+  position: relative;
+  height: var(--sns-intro-h);
+}
+
+.sns__title {
+  white-space: nowrap;
+}
+
+.sns__line {
+  position: absolute;
+  top: var(--sns-line-y);
+  left: var(--sns-line-x);
+}
+
+.sns__desc {
+  position: absolute;
+  top: var(--sns-desc-y);
+  left: var(--sns-desc-x);
+  width: var(--sns-desc-w);
+  font-family: var(--font-koho);
+  font-size: var(--fs-15);
+  font-weight: var(--fw-regular);
+  line-height: var(--sns-desc-lh);
+  color: var(--color-gray-text);
+}
+
+.sns__icons {
+  position: absolute;
+  top: var(--sns-icons-y);
+  left: var(--sns-icons-x);
+  display: flex;
+  gap: var(--sns-icons-gap);
+}
+
+.sns__icon {
+  display: block;
+  width: var(--sns-icon-size);
+  height: var(--sns-icon-size);
+}
+
+.sns__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- 갤러리 ---------- */
+.sns__gallery {
+  position: relative;
+  margin-top: var(--sns-gallery-mt);
+  aspect-ratio: var(--sns-gallery-ratio);
+}
+
+/* 슬라이드 영역 — 갤러리 밖으로 나가는 이미지를 잘라냄. 버튼은 이 영역 밖(위)에 둠 */
+.sns__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  isolation: isolate; /* 가운데 이미지(z-index)가 원형 버튼 위로 올라오지 않게 */
+  touch-action: pan-y;
+}
+
+.sns__photo {
+  position: absolute;
+  z-index: 1;
+  transition:
+    left var(--sns-slide-duration) ease,
+    top var(--sns-slide-duration) ease,
+    width var(--sns-slide-duration) ease,
+    height var(--sns-slide-duration) ease;
+}
+
+.sns__photo.is-instant {
+  transition: none;
+}
+
+.sns__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+/* 칸(slot) 위치 — 0 왼쪽(363) / 1 가운데(472, 위에 겹침) / 2 오른쪽(363)
+   -1, 3 은 화면 밖 대기 위치 (이동 중에만 사용) */
+.sns__photo[data-slot="-1"],
+.sns__photo[data-slot="0"],
+.sns__photo[data-slot="2"],
+.sns__photo[data-slot="3"] {
+  top: var(--sns-side-top);
+  width: var(--sns-side-w);
+  height: var(--sns-side-h);
+}
+
+.sns__photo[data-slot="-1"] {
+  left: calc(-1 * var(--sns-side-w));
+}
+
+.sns__photo[data-slot="0"] {
+  left: 0;
+}
+
+.sns__photo[data-slot="2"] {
+  left: var(--sns-side-right-left);
+}
+
+.sns__photo[data-slot="3"] {
+  left: 100%;
+}
+
+.sns__photo[data-slot="1"] {
+  z-index: 2;
+  top: 0;
+  left: var(--sns-big-left);
+  width: var(--sns-big-w);
+  height: 100%;
+}
+
+/* 원형 화살표 버튼 (이미지 경계에 걸쳐 놓임) */
+.sns__gallery .round-btn {
+  position: absolute;
+  top: var(--sns-btn-top);
+  left: var(--sns-btn-left);
+}
+
+.sns__gallery .round-btn--next {
+  left: var(--sns-btn-right-left);
+}
+
+/* ==========================================================================
+   Tablet / Mobile (시안 없음 [추정]) — 소개 영역 위, 갤러리 아래로 쌓기
+   ========================================================================== */
+@media (max-width: 1199px) {
+  .sns__inner {
+    --sns-pad: var(--page-gutter);
+
+    grid-template-columns: 1fr;
+  }
+
+  .sns__gallery {
+    margin-top: var(--space-40);
+  }
+}
+
+/* 모바일: 갤러리가 작아져 72px 원형 버튼이 이미지를 가리므로 숨김 */
+@media (max-width: 767px) {
+  .sns__gallery .round-btn {
+    display: none;
+  }
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NUMBERING</title>
+  <!-- JS 가 켜져 있을 때만 .js 를 붙임: Collection 스크롤 등장(js/reveal.js)이 숨김 상태로 시작하게 (JS 가 꺼져 있으면 처음부터 보임) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections/hero.css">
+  <link rel="stylesheet" href="css/sections/best.css">
+  <link rel="stylesheet" href="css/sections/collection.css">
+  <link rel="stylesheet" href="css/sections/stores.css">
+  <link rel="stylesheet" href="css/sections/sns.css">
+  <link rel="stylesheet" href="css/sections/footer.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <a class="site-header__logo" href="#">
+      <img src="assets/images/hero/logo.png" alt="NUMBERING">
+    </a>
+
+    <nav class="gnb" id="gnb" aria-label="주요 메뉴">
+      <ul class="gnb__list">
+        <li><a class="gnb__link gnb__link--shop" href="#"><span class="gnb__text">Shop</span></a></li>
+        <li><a class="gnb__link gnb__link--about" href="#"><span class="gnb__text">About</span></a></li>
+        <li><a class="gnb__link gnb__link--stores" href="#"><span class="gnb__text">Stores</span></a></li>
+        <li><a class="gnb__link gnb__link--membership" href="#"><span class="gnb__text">Membership</span></a></li>
+        <li><a class="gnb__link gnb__link--help" href="#"><span class="gnb__text">Help</span></a></li>
+        <li><a class="gnb__link gnb__link--review" href="#"><span class="gnb__text">Review</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="utils">
+      <a class="utils__lang" href="#">LANGUAGE</a>
+      <div class="utils__icons">
+        <a class="utils__icon" href="#"><img src="assets/icons/search.png" alt="검색"></a>
+        <a class="utils__icon" href="#"><img src="assets/icons/account.png" alt="내 계정"></a>
+        <a class="utils__icon" href="#"><img src="assets/icons/cart.png" alt="장바구니"></a>
+        <button class="utils__icon" type="button" aria-controls="gnb" aria-expanded="false" data-menu-toggle>
+          <img src="assets/icons/menu.png" alt="메뉴">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero" aria-label="메인 비주얼">
+      <div class="hero__bg">
+        <!-- 사진마다 담는 칸(.hero__bg-col)을 따로 둠: 마우스 효과(js/hero.js)로 칸 폭이 50:50 ↔ 40:60 으로 바뀌어도 서로 침범하지 않게 -->
+        <div class="hero__bg-col hero__bg-col--left">
+          <img class="hero__bg-img--left" src="assets/images/hero/main-banner-D1.jpg" alt="차량 위에 반지를 낀 손을 올린 모습">
+        </div>
+        <div class="hero__bg-col hero__bg-col--right">
+          <img class="hero__bg-img--right" src="assets/images/hero/main-banner-D2.jpg" alt="팔찌를 한 모델이 팔 위로 정면을 응시하는 모습">
+        </div>
+      </div>
+
+      <!-- 이벤트 배너 (마퀴) -->
+      <div class="marquee" role="region" aria-label="이벤트 안내">
+        <div class="marquee__group">
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inter-kr">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+        </div>
+        <div class="marquee__group" aria-hidden="true">
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inter-kr">회원 가입 시 1만 원 쿠폰 지급</p>
+          <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
+          <p class="marquee__item marquee__item--inria">회원 가입 시 1만 원 쿠폰 지급</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEST ===== -->
+    <section class="best" aria-label="BEST">
+      <div class="best__intro">
+        <div class="best__spacer best__spacer--left" aria-hidden="true"></div>
+        <div class="best__intro-body">
+          <p class="best__lead">세상의 모든 영감을 담아낸 세련된 무게감, 당신의 아름다운 애티튜드를 완성할 단 하나의 주얼리.</p>
+          <a class="cta cta--best" href="https://numberingwebsite.com/category/top20/134/?cate_no=134">
+            <svg class="cta__line cta__line--top" viewBox="0 0 252 2" aria-hidden="true"><path d="M0 1H252"/></svg>
+            <span class="cta__label">VIEW TOP20</span>
+            <img class="cta__arrow" src="assets/icons/cta-arrow.svg" alt="">
+            <svg class="cta__line cta__line--bottom" viewBox="0 0 252 2" aria-hidden="true"><path d="M0 1H252"/></svg>
+          </a>
+        </div>
+        <div class="best__spacer best__spacer--right" aria-hidden="true"></div>
+      </div>
+
+      <div class="best__products">
+        <div class="best__spacer best__spacer--offset" aria-hidden="true"></div>
+        <ul class="best__cards">
+          <li class="product-card product-card--1">
+            <a class="product-card__link" href="#">
+              <div class="product-card__image">
+                <img src="assets/images/best/product-1.png" alt="흰색 큐빅이 세팅된 십자가 펜던트 은 목걸이">
+              </div>
+              <p class="product-card__label"><span class="product-card__rank">TOP1</span><span>#3729</span></p>
+            </a>
+          </li>
+          <li class="product-card product-card--2">
+            <a class="product-card__link" href="#">
+              <div class="product-card__image">
+                <img src="assets/images/best/product-3.png" alt="둥근 링 세 개가 겹쳐진 펜던트의 은 목걸이">
+              </div>
+              <p class="product-card__label"><span class="product-card__rank">TOP2</span><span>#5738</span></p>
+            </a>
+          </li>
+          <li class="product-card product-card--3">
+            <a class="product-card__link" href="#">
+              <div class="product-card__image">
+                <img src="assets/images/best/product-2.png" alt="플레이트 장식이 있는 은색 링크 체인 팔찌">
+              </div>
+              <p class="product-card__label"><span class="product-card__rank">TOP3</span><span>#1909</span></p>
+            </a>
+          </li>
+          <li class="product-card product-card--4">
+            <a class="product-card__link" href="#">
+              <div class="product-card__image">
+                <img src="assets/images/best/product-4.png" alt="터키석 빛 스톤으로 만든 작은 십자가 펜던트 은 목걸이">
+              </div>
+              <p class="product-card__label"><span class="product-card__rank">TOP4</span><span>#3719</span></p>
+            </a>
+          </li>
+        </ul>
+        <button class="best__prev" type="button" aria-label="다음 상품">
+          <img src="assets/icons/best-prev.svg" alt="">
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== Collection ===== -->
+    <section class="collection" aria-label="Collection">
+      <div class="collection__dark">
+        <ul class="collection__tabs" aria-label="컬렉션 종류">
+          <li><button class="collection__tab is-active" type="button" aria-pressed="true">Heart</button></li>
+          <li><button class="collection__tab" type="button" aria-pressed="false">Ribbon</button></li>
+          <li><button class="collection__tab" type="button" aria-pressed="false">Star</button></li>
+          <li><button class="collection__tab" type="button" aria-pressed="false">Chunky</button></li>
+          <li><button class="collection__tab" type="button" aria-pressed="false">Initials</button></li>
+        </ul>
+
+        <div class="collection__inner collection__gallery">
+          <figure class="collection__main" data-reveal>
+            <img src="assets/images/collection/collection-main.jpg" alt="하얀 니트 베스트를 입고 팔을 감싸 안은 채 시선을 아래로 내린 모델">
+          </figure>
+          <div class="collection__heading" data-reveal data-reveal-delay="0.2">
+            <h2 class="collection__title">Heart</h2>
+            <p class="collection__subtitle">Delicate brilliance expressing your own romance</p>
+          </div>
+          <figure class="collection__sub" data-reveal data-reveal-delay="0.35">
+            <img src="assets/images/collection/collection-sub.jpg" alt="손으로 입가를 가린 모델의 옆모습, 손가락에 은색 반지">
+          </figure>
+        </div>
+      </div>
+
+      <div class="collection__inner collection__story">
+        <figure class="collection__story-image" data-reveal>
+          <img src="assets/images/collection/collection-story.jpg" alt="흰색 레이스 상의에 터키석 하트 펜던트 목걸이를 착용한 모델">
+        </figure>
+        <p class="collection__desc" data-reveal data-reveal-delay="0.2">입체적이고 볼륨감 있는 하트 쉐입에 입혀진 유연한 광택. 트렌드에 구애받지 않고 언제나 빛나는 하트 컬렉션으로 당신의 아름다운 애티튜드를 완성하세요.</p>
+        <a class="cta cta--best" href="https://numberingwebsite.com/category/heart/297/" data-reveal data-reveal-delay="0.4">
+          <svg class="cta__line cta__line--top" viewBox="0 0 252 2" aria-hidden="true"><path d="M0 1H252"/></svg>
+          <span class="cta__label">VIEW ALL HEARTS</span>
+          <img class="cta__arrow" src="assets/icons/cta-arrow.svg" alt="">
+          <svg class="cta__line cta__line--bottom" viewBox="0 0 252 2" aria-hidden="true"><path d="M0 1H252"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== Stores ===== -->
+    <section class="stores" aria-label="Stores">
+      <div class="stores__row">
+        <!-- 매장 이미지 + 세로 라벨 -->
+        <article class="store-card">
+          <div class="store-card__image">
+            <img src="assets/images/stores/sinsa-flagship.jpg" alt="나무 패널 벽과 유리 진열대가 놓인 신사 플래그십 스토어 내부" data-store-image>
+          </div>
+          <div class="store-card__indicator">
+            <p class="store-card__name" data-store-label> SINSA FLAGSHIP</p>
+            <p class="store-card__number" data-store-number><span>0</span><span class="is-tight">1 </span><span class="is-thin is-tight">.</span><span class="is-thin"> </span></p>
+          </div>
+        </article>
+
+        <!-- 매장 정보 (슬라이더 전환 시 함께 바뀜) -->
+        <div class="store-info" aria-live="polite">
+          <h2 class="section-title store-info__heading">
+            <span class="section-title__sub"> Republic of Korea</span>
+            <span class="section-title__main">STORES</span>
+          </h2>
+          <address class="store-info__address">
+            <p class="store-info__name" data-store-name>신사 플래그십 스토어</p>
+            <p class="store-info__line" data-store-address>서울특별시 강남구 압구정로 10길 28</p>
+            <p class="store-info__line" data-store-phone>+82 70-4157-4356</p>
+            <p class="store-info__line" data-store-hours>Monday - Sunday | 11:00am - 8:00pm</p>
+          </address>
+          <a class="cta cta--stores" href="https://numberingwebsite.com/shopinfo/stockist.html">
+            <svg class="cta__line cta__line--top" viewBox="0 0 252 2" aria-hidden="true"><path d="M0 1H252"/></svg>
+            <span class="cta__label">FIND A STORE</span>
+            <img class="cta__arrow" src="assets/icons/cta-arrow-stores.svg" alt="">
+            <svg class="cta__line cta__line--bottom" viewBox="0 0 252 2" aria-hidden="true"><path d="M0 1H252"/></svg>
+          </a>
+          <div class="store-info__pager">
+            <button class="round-btn" type="button" aria-label="이전 매장" data-store-prev>
+              <img class="round-btn__circle" src="assets/icons/stores-circle.svg" alt="">
+              <span class="round-btn__arrow"><img src="assets/icons/stores-arrow-left.svg" alt=""></span>
+            </button>
+            <button class="round-btn round-btn--next" type="button" aria-label="다음 매장" data-store-next>
+              <img class="round-btn__circle" src="assets/icons/stores-circle.svg" alt="">
+              <span class="round-btn__arrow"><img src="assets/icons/stores-arrow-right.svg" alt=""></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 다음 매장 이미지 -->
+        <div class="store-next">
+          <img src="assets/images/stores/hannam-flagship.jpg" alt="유리 진열대와 꽃이 놓인 테이블, 회색 벽면의 NUMBERING 간판이 보이는 한남 플래그십 스토어 입구" data-store-preview>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SNS ===== -->
+    <section class="sns" aria-label="SNS">
+      <div class="sns__inner">
+        <!-- 소개 -->
+        <div class="sns__intro">
+          <h2 class="section-title sns__title">
+            <span class="section-title__sub"><span class="section-title__space"> </span>Follow Us</span>
+            <span class="section-title__main">SNS</span>
+          </h2>
+          <img class="sns__line" src="assets/icons/sns-title-line.svg" alt="">
+          <p class="sns__desc">과감하면서도 세련된 넘버링의 모던 클래식을 확인해보세요. SNS 에서 최신 컬렉션과 데일리 스타일링 팁을 만나실 수 있습니다.</p>
+          <ul class="sns__icons">
+            <li><a class="sns__icon" href="https://www.instagram.com/numbering_official/" target="_blank" rel="noopener noreferrer"><img src="assets/icons/sns-instagram.jpg" alt="Instagram"></a></li>
+            <li><a class="sns__icon" href="https://www.facebook.com/numberingseoul/" target="_blank" rel="noopener noreferrer"><img src="assets/icons/sns-facebook.jpg" alt="Facebook"></a></li>
+            <li><a class="sns__icon" href="https://pf.kakao.com/_qMjDT" target="_blank" rel="noopener noreferrer"><img src="assets/icons/sns-kakao.jpg" alt="카카오톡"></a></li>
+          </ul>
+        </div>
+
+        <!-- 이미지 갤러리 -->
+        <div class="sns__gallery" data-sns-gallery>
+          <div class="sns__viewport" data-sns-viewport>
+            <figure class="sns__photo" data-slot="0">
+              <img src="assets/images/sns/numbering_official/numbering_official_1788943008_3982265046818513338_5563404703_1.jpg" alt="NUMBERING 인스타그램 게시물 12" draggable="false">
+            </figure>
+            <figure class="sns__photo" data-slot="1">
+              <img src="assets/images/sns/numbering_official/numbering_official_1791364992_4002581986945938166_5563404703_1.jpg" alt="NUMBERING 인스타그램 게시물 1" draggable="false">
+            </figure>
+            <figure class="sns__photo" data-slot="2">
+              <img src="assets/images/sns/numbering_official/numbering_official_1791014402_3998921578750579560_5563404703_1.jpg" alt="NUMBERING 인스타그램 게시물 2" draggable="false">
+            </figure>
+          </div>
+          <button class="round-btn" type="button" aria-label="이전 이미지" data-sns-prev>
+            <img class="round-btn__circle" src="assets/icons/sns-circle.svg" alt="">
+            <span class="round-btn__arrow"><img src="assets/icons/sns-arrow-left.svg" alt=""></span>
+          </button>
+          <button class="round-btn round-btn--next" type="button" aria-label="다음 이미지" data-sns-next>
+            <img class="round-btn__circle" src="assets/icons/sns-circle.svg" alt="">
+            <span class="round-btn__arrow"><img src="assets/icons/sns-arrow-right.svg" alt=""></span>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <nav class="footer__menu" aria-label="푸터 메뉴">
+          <p class="footer__more">More</p>
+          <ul class="footer__list">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Stores</a></li>
+            <li><a href="#">Information</a></li>
+            <li><a href="#">Membership</a></li>
+            <li><a href="#">Agreement</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Review</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__company">
+          <address class="footer__info">
+            <div class="footer__info-group">
+              <p>Numbering Corp. CEO Min Kyung Lee</p>
+              <p>(04783) 6F,16, Seongsui-ro 20-gil, Seongdong-gu, Seoul, Republic of Korea Mall Order License</p>
+              <p>제 2023-서울성동-0987 호</p>
+              <p>Business License 289-88-01217</p>
+            </div>
+            <div class="footer__info-group">
+              <p>CS Center (customer@numberingseoul.com</p>
+              <p>+82 2-6952-0881)</p>
+            </div>
+            <div class="footer__info-group">
+              <p>Business Center (service@numberingseoul.com)</p>
+            </div>
+          </address>
+          <a class="footer__care" href="#"><span class="footer__care-label">CUSTOMER CARE</span></a>
+        </div>
+      </div>
+
+      <div class="footer__brand">
+        <p class="footer__logo">NUMBERING</p>
+        <p class="footer__legal">     © NUMBERING <a href="#">Terms &amp; Conditions</a> <a href="#">Our privacy policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/hero.js" defer></script>
+  <script src="js/reveal.js" defer></script>
+  <script src="js/header.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/tabs.js" defer></script>
+  <script src="js/stores.js" defer></script>
+  <script src="js/sns.js" defer></script>
+  <script src="js/best.js" defer></script>
+</body>
+</html>

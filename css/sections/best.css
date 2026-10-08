@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Section — BEST
+   Figma의 Flexible 스페이서 / min·max 규칙을 그대로 사용 (1920 기준 428 + 964 + 528)
+   ========================================================================== */
+
+.best {
+  padding-bottom: var(--best-section-pb);
+  background: var(--color-white);
+}
+
+/* ---------- Intro (소개문구 + CTA) ---------- */
+.best__intro {
+  display: flex;
+  padding-top: var(--best-intro-pt);
+  padding-bottom: var(--best-intro-pb);
+  padding-inline: var(--best-frame-pad); /* 1920px 초과 화면에서 가운데 정렬 (사용자 지시) */
+  overflow: clip;
+}
+
+.best__spacer {
+  flex: 1 0 0;
+  min-width: 1px;
+  height: 1px;
+}
+
+.best__spacer--left {
+  max-width: var(--best-spacer-left-max);
+}
+
+.best__spacer--right {
+  max-width: var(--best-spacer-right-max);
+}
+
+.best__spacer--offset {
+  max-width: var(--best-offset-max);
+}
+
+.best__intro-body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--best-intro-gap);
+  max-width: var(--best-intro-max);
+  /* [사용자 지시] 웹(1200px 이상)에서는 소개 문구가 줄바꿈 없이 "…주얼리."까지 한 줄이 되도록 문구 폭(max-content)을
+     최소 폭으로 둠. 화면이 좁아지면 줄바꿈 대신 왼쪽/오른쪽 스페이서(428/528px)가 먼저 줄어듦. 1920px에서는 시안과 같음.
+     (1199px 이하는 아래 미디어 쿼리에서 이전 최소 폭으로 되돌림) */
+  min-width: max-content;
+}
+
+.best__lead {
+  min-height: 25px;
+  font-family: var(--font-laila);
+  font-size: var(--fs-24);
+  font-weight: var(--fw-regular);
+  line-height: var(--best-lead-lh);
+  word-break: keep-all; /* 시안(1920)은 한 줄. 좁은 폭에서 한글이 단어 중간에서 끊기지 않게 */
+  color: var(--color-black);
+}
+
+/* ---------- Products ---------- */
+.best__products {
+  position: relative;
+  display: flex;
+  padding-bottom: var(--best-products-pb);
+  padding-inline: var(--best-frame-pad); /* 1920px 초과 화면에서 가운데 정렬 (사용자 지시) */
+  overflow: clip;
+}
+
+.best__cards {
+  display: flex;
+  flex: 1 0 0;
+  gap: var(--best-cards-gap);
+  align-items: flex-start;
+  max-width: var(--best-cards-max);
+  min-width: var(--best-cards-min);
+}
+
+.best__prev {
+  position: absolute;
+  top: var(--best-prev-y);
+  left: calc(var(--best-prev-x) + var(--best-frame-pad));
+  width: var(--best-prev-w);
+  height: var(--best-prev-h);
+}
+
+.best__prev img {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Product card (공통 컴포넌트) ---------- */
+.product-card {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  max-width: var(--card-max-w);
+  min-width: 0;
+  overflow: clip;
+}
+
+.product-card--1 { --card-max-w: 246px; --card-img-h: 532px; }
+.product-card--2 { --card-max-w: 429px; --card-img-h: 536px; --card-ratio: 429 / 536; }
+.product-card--3 { --card-max-w: 430px; --card-img-h: 537px; --card-ratio: 430 / 537; }
+.product-card--4 { --card-max-w: 432px; --card-img-h: 540px; --card-ratio: 432 / 540; }
+
+.product-card__link {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__image {
+  width: 100%;
+  height: var(--card-img-h);
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 카드 1: 시안에서 이미지가 우측 기준으로 잘려 보임 (left −73.16%) */
+.product-card--1 .product-card__image img {
+  object-position: right center;
+}
+
+/* [사용자 지시] 웹(1200px 이상)에서 창이 좁아져 카드 폭이 줄어도 사진이 잘리지 않게: 카드 높이를 폭에 맞춰 줄임.
+   2~4번 카드는 시안 사진 비율(429×536 등, 4:5)을 그대로 유지하고, 1번 카드는 같은 줄에서 시안처럼 2~4번보다
+   --best-card1-offset(8px) 짧게(나머지 높이를 채움). 1920px 이상에서는 이 규칙을 쓰지 않고 시안 높이(532/536/537/540px) 그대로 */
+@media (min-width: 1200px) and (max-width: 1919px) {
+  .best__cards {
+    align-items: stretch;
+  }
+
+  .product-card__image {
+    height: auto;
+    aspect-ratio: var(--card-ratio);
+  }
+
+  .product-card--1 {
+    margin-bottom: var(--best-card1-offset);
+  }
+
+  .product-card--1 .product-card__link {
+    flex: 1 1 auto;
+  }
+
+  .product-card--1 .product-card__image {
+    flex: 1 1 0;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+}
+
+/* 사용자 지시(시안 외): 라벨 줄에 순위(TOP1~20)를 번호 앞에 함께 표시 */
+.product-card__rank {
+  margin-right: var(--best-rank-gap);
+}
+
+.product-card__label {
+  min-height: var(--best-label-h);
+  padding-top: var(--best-label-pt);
+  font-size: var(--fs-15);
+  font-weight: var(--fw-bold);
+  line-height: normal;
+  letter-spacing: calc(var(--ls-product-no) + var(--ls-inter-15));
+  color: var(--color-gray-label);
+}
+
+/* ---------- 슬라이더 (사용자 지시, 시안 외 효과) ----------
+   js/best.js — ← 버튼을 누르면 카드가 오른쪽으로 한 칸씩 이동 (TOP20 20장 순환, 0.4초).
+   ≥1200px: 처음 4장은 레이아웃용 "유령" 카드(visibility: hidden)로 칸 위치/크기를 정하고,
+            눈에 보이는 카드는 .best__track 안에서 그 칸 좌표로 absolute 배치되어 이동 (칸마다 폭/높이가 달라 같이 변함)
+   ≤1199px: 가로 스와이프 스트립에 20장을 모두 넣고, ← 버튼은 한 장 앞으로 스크롤 */
+.best__track {
+  display: none;
+}
+
+/* 스트립(태블릿/모바일)에서만 보이는 나머지 16장. 시안 없음 [추정]: 가운데 카드(430px)와 같은 크기 */
+.product-card--extra {
+  --card-max-w: 430px;
+  --card-img-h: 537px;
+}
+
+@media (min-width: 1200px) {
+  .product-card--extra {
+    display: none;
+  }
+
+  .best__cards.is-slider .product-card {
+    visibility: hidden;
+  }
+
+  .best__track {
+    position: absolute;
+    top: 0;
+    bottom: var(--best-products-pb);
+    left: 0;
+    display: block;
+    overflow: clip; /* 폭은 JS 가 카드 영역 오른쪽 끝까지로 지정: 나가는 카드가 오른쪽 여백에 보이지 않게 */
+  }
+
+  .best__track .product-card {
+    position: absolute;
+    top: 0;
+    flex: none;
+    max-width: none;
+    transition:
+      left var(--best-slide-duration) ease,
+      width var(--best-slide-duration) ease;
+  }
+
+  /* 칸별 이미지 높이: JS(best.js)가 레이아웃용 카드(유령)의 실제 높이를 재서 --card-img-h 로 지정
+     (칸 0 은 칸 1, 칸 5 는 칸 4 와 같은 높이). 창이 좁아져도 사진 비율이 유지됨 */
+  .best__track .product-card__image {
+    height: var(--card-img-h);
+    aspect-ratio: auto;
+    transition: height var(--best-slide-duration) ease;
+  }
+
+  .best__track .product-card__image img {
+    object-position: center center;
+    transition: object-position var(--best-slide-duration) ease;
+  }
+
+  /* 왼쪽 잘린 칸(칸 0·1)의 라벨은 시안처럼 비움. 칸 2 로 넘어갈 때 이동과 같이 서서히 나타남 */
+  .best__track .product-card__label {
+    transition: opacity var(--best-slide-duration) ease;
+  }
+
+  .best__track .product-card[data-slot="0"] .product-card__label,
+  .best__track .product-card[data-slot="1"] .product-card__label {
+    opacity: 0;
+  }
+
+  /* 칸 1 은 시안처럼 이미지가 오른쪽 기준으로 잘려 보임 */
+  .best__track .product-card[data-slot="0"] .product-card__image img,
+  .best__track .product-card[data-slot="1"] .product-card__image img {
+    object-position: right center;
+  }
+
+  .best__track .product-card.is-instant,
+  .best__track .product-card.is-instant * {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Tablet / Mobile (시안 없음)
+   - 좌우 스페이서 제거, 좌우 여백은 --page-gutter
+   - 상품 카드는 가로 스와이프 스트립 (카드 최소 폭 240px, 시안의 min-width)
+   ========================================================================== */
+@media (max-width: 1199px) {
+  .best__spacer {
+    display: none;
+  }
+
+  .best__intro-body {
+    max-width: none;
+    min-width: var(--best-intro-min);
+    padding-inline: var(--page-gutter);
+  }
+
+  .best__cards {
+    max-width: none;
+    padding-inline: var(--page-gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+
+  .best__cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-card {
+    min-width: var(--best-card-min-w);
+    scroll-snap-align: start;
+  }
+
+  .best__prev {
+    left: var(--page-gutter);
+  }
+}
+
+@media (max-width: 767px) {
+  .best__prev {
+    display: none;
+  }
+}
