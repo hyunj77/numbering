@@ -1,41 +1,42 @@
-/* ==========================================================================
-   Design Tokens — NUMBERING (Figma: 선현지 / node 49:124, Desktop 1920)
-   모든 값은 피그마에서 읽은 값. 추정값은 [추정] 표기.
-   브레이크포인트(미디어쿼리는 var 사용 불가): desktop ≥1200 / tablet 768~1199 / mobile <768 (단, 헤더 메뉴는 1024px 기준: ≥1024 데스크톱 GNB, <1024 햄버거 드로어)
-   ========================================================================== */
-
 :root {
-  /* ---------- Color ---------- */
   --color-black: #000;
   --color-white: #fff;
   --color-white-99: rgba(255, 255, 255, 0.99);
-  --color-ink: #1e1e1e;               /* Hero 배경 (Figma 변수) */
-  --color-surface-dark: #2a2a2a;      /* Collection 상단 / Stores 배경 */
-  --color-gray-text: #929193;         /* 보조 텍스트 */
-  --color-gray-label: rgba(146, 145, 147, 0.7); /* 상품 번호 */
-  --color-gray-tab: #a7a6a5;          /* Collection 비활성 탭 */
-  --color-gray-footer: #878787;       /* 푸터 "More" */
-  --color-gray-ctrl: #727272;         /* Figma 변수 Controls/Secondary */
-
-  /* ---------- Font family ----------
-     Inter → Pretendard 대체(영문). 한글 글리프가 없는 폰트 뒤에는 Noto Sans KR 폴백. */
-  --font-inter: 'Pretendard', sans-serif;
-  --font-inter-kr: 'Pretendard Latin', 'Noto Sans KR', sans-serif; /* Inter 지정 한글: 숫자/공백=Pretendard, 한글=Noto */
-  --font-laila: 'Laila', 'Noto Sans KR', sans-serif;
-  --font-koho: 'KoHo', 'Noto Sans KR', sans-serif;
-  --font-montserrat: 'Montserrat', 'Noto Sans KR', sans-serif;
-  --font-inria: 'Inria Serif', 'Noto Sans KR', serif;
-  --font-42dot: '42dot Sans', sans-serif;
-  --font-noto-kr: 'Noto Sans KR', sans-serif;
-
-  /* ---------- Font weight ---------- */
+  --color-ink: #1e1e1e;
+  --color-surface-dark: #2a2a2a;
+  --color-gray-text: #929193;
+  --color-gray-label: rgba(146, 145, 147, 0.7);
+  --color-gray-tab: #a7a6a5;
+  --color-gray-footer: #878787;
+  --color-gray-ctrl: #727272;
+  --font-inter: "Pretendard", sans-serif;
+  --font-inter-kr:
+    "Pretendard Latin",
+    "Noto Sans KR",
+    sans-serif;
+  --font-laila:
+    "Laila",
+    "Noto Sans KR",
+    sans-serif;
+  --font-koho:
+    "KoHo",
+    "Noto Sans KR",
+    sans-serif;
+  --font-montserrat:
+    "Montserrat",
+    "Noto Sans KR",
+    sans-serif;
+  --font-inria:
+    "Inria Serif",
+    "Noto Sans KR",
+    serif;
+  --font-42dot: "42dot Sans", sans-serif;
+  --font-noto-kr: "Noto Sans KR", sans-serif;
   --fw-extralight: 200;
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-bold: 700;
   --fw-extrabold: 800;
-
-  /* ---------- Font size ---------- */
   --fs-12: 12px;
   --fs-13: 13px;
   --fs-14: 14px;
@@ -47,29 +48,20 @@
   --fs-72: 72px;
   --fs-128: 128px;
   --fs-264: 264.9px;
-
-  /* ---------- Letter spacing ---------- */
-  --ls-heart: 25.6px;      /* Collection "Heart" */
-  --ls-product-no: 0.5px;  /* BEST 상품 번호 */
-  --ls-store-num: -2.4px;  /* Stores "01 ." */
-
-  /* Inter → Pretendard 폭 보정 [추정: 시안 텍스트 폭에 맞춰 측정한 값] */
-  --ls-inter-16: 0.54px;   /* GNB (Figma 텍스트 폭 39/46/49/95/35/55 기준) */
-  --ls-inter-14: 0.57px;   /* LANGUAGE (Figma 폭 78 기준) */
-  /* Stores 보정 [추정: 시안 텍스트 폭/위치에 맞춰 측정] */
-  --ls-inter-28: 0.75px;         /* "Republic of Korea" 폭 227px */
-  --ls-inter-72: 2.2px;          /* "STORES" 폭 282px */
-  --ls-inter-24-thin: 0.4px;    /* "SINSA FLAGSHIP" 길이 179px */
-  --stores-num-shift-y: -4px;    /* "01 ." 세로 위치 (시안 ink 595~638) */
-  --ls-store-num-fix: -1.3px;    /* "01 ." 길이 44px (--ls-store-num에 더함) */
-  --ls-inter-24: 0.7px;    /* Collection 탭 (Figma 텍스트 폭 484px 기준) */
-  --ls-inter-15: 0.3px;   /* 상품 번호 Bold: 시안 --ls-product-no(0.5px)에 더하는 보정 (잉크 폭 +1~2px) */
-  --ls-inter-13: 0.36px;   /* 마퀴 영문 (Figma 항목 간격 516px/쌍 기준) */
-
-  /* Inter → Pretendard 세로 메트릭 보정 [추정: 스크린샷 비교 결과 1px] */
+  --ls-heart: 25.6px;
+  --ls-product-no: 0.5px;
+  --ls-store-num: -2.4px;
+  --ls-inter-16: 0.54px;
+  --ls-inter-14: 0.57px;
+  --ls-inter-28: 0.75px;
+  --ls-inter-72: 2.2px;
+  --ls-inter-24-thin: 0.4px;
+  --stores-num-shift-y: -4px;
+  --ls-store-num-fix: -1.3px;
+  --ls-inter-24: 0.7px;
+  --ls-inter-15: 0.3px;
+  --ls-inter-13: 0.36px;
   --inter-shift-y: 1px;
-
-  /* ---------- Spacing / Size (공통) ---------- */
   --space-8: 8px;
   --space-10: 10px;
   --space-16: 16px;
@@ -79,12 +71,8 @@
   --space-60: 60px;
   --space-80: 80px;
   --space-100: 100px;
-
-  /* ---------- Radius ---------- */
   --radius: 0;
   --radius-round: 50%;
-
-  /* ---------- Header (Hero 위 오버레이) ---------- */
   --header-h: 74px;
   --header-logo-x: 35px;
   --header-logo-y: 21px;
@@ -99,183 +87,157 @@
   --header-icon-size: 22px;
   --header-icon-gap: 25px;
   --header-lang-w: 78px;
-
-  /* [사용자 지시(시안 외 효과)] 헤더 고정 + 스크롤(10px 이상) 시 배경. 불투명도는 이 한 곳에서 조절 */
-  --header-h-scrolled: 56px;         /* 스크롤 시 헤더 높이 (맨 위는 --header-h 74px) */
-  --header-gnb-text-shift: 3px;      /* [사용자 지시 후 추정] GNB 14px 로 줄인 뒤 GNB 글자를 LANGUAGE 와 같은 높이로 맞추는 내림 값 (실측: 맨 위에서 3px 높았음) */
-  --header-gnb-ink-shift: 2px;       /* [추정] 줄어든 헤더에서 GNB 글자를 가운데로 맞추는 내림 값 (GNB 를 14px 로 줄인 뒤 text-shift 3px 와 함께 실측해 4px → 2px 로 조정) */
+  --header-h-scrolled: 56px;
+  --header-gnb-text-shift: 3px;
+  --header-gnb-ink-shift: 2px;
   --header-bg-scrolled: rgb(0 0 0 / 0.8);
-  --header-scroll-threshold: 10px;   /* 문서용. 실제 값은 js/header.js 의 SCROLL_THRESHOLD 와 같아야 함 */
+  --header-scroll-threshold: 10px;
   --motion-duration: 0.3s;
-
-  /* [사용자 지시(시안 외 효과)] 호버 하이라이트 (GNB, Collection 탭) — Codrops Adsila: 글자 뒤 아래쪽 절반에 반투명 흰색 띠가 깔림 */
-  --hover-bar-color: rgb(255 255 255 / 0.3);   /* 반투명 흰색 (Adsila 원본도 불투명도 0.3) */
-  --hover-bar-height: 50%;                      /* 글자 박스 아래쪽 절반 (Adsila 값) */
-  --hover-bar-extend: 0.35em;                   /* 글자 좌우로 띠가 넓어지는 만큼 (Adsila 의 padding 0.35em) */
-  --hover-bar-duration: 0.5s;                   /* Adsila 값 */
-  --hover-bar-ease: cubic-bezier(0.2, 1, 0.3, 1); /* Adsila 값 */
-  /* [사용자 지시(시안 외 변경)] 메뉴 재구성: SHOP / NEW & BEST / CAMPAIGN / ABOUT / COMMUNITY + 하위 드롭다운 + 언어·검색·마이페이지.
-     항목 너비는 글자 폭을 따름(예전 시안 6개 항목의 고정 너비 토큰 제거). 드롭다운 모양은 사용자가 준 언어 메뉴 스크린샷(흰 패널, 선택=검정, 나머지=회색)을 기준으로 한 [추정] */
+  --hover-bar-color: rgb(255 255 255 / 0.3);
+  --hover-bar-height: 50%;
+  --hover-bar-extend: 0.35em;
+  --hover-bar-duration: 0.5s;
+  --hover-bar-ease: cubic-bezier(0.2, 1, 0.3, 1);
   --dd-bg: #fff;
   --dd-ink: #000;
-  --dd-ink-muted: #929193;           /* 회색 항목 (--color-gray-text 와 같은 값) */
+  --dd-ink-muted: #929193;
   --dd-fs: 14px;
-  --dd-pad: 20px;                    /* 패널 안쪽 여백 */
-  --dd-row-py: 8px;                  /* 항목 위아래 여백 (행 간격) */
-  --dd-bridge: 16px;                 /* 메뉴 글자와 패널 사이 투명한 다리: 마우스가 지나가도 패널이 안 닫힘 */
-  --dd-shift: 8px;                   /* 열릴 때 아래에서 올라오는 거리 */
+  --dd-pad: 20px;
+  --dd-row-py: 8px;
+  --dd-bridge: 16px;
+  --dd-shift: 8px;
   --dd-duration: 0.25s;
-  /* SHOP 메가메뉴 (사용자 지시: 에디토리얼 보더-그리드). 색은 명세의 #f9f9f9 / neutral-200·300 / neutral-600 값 */
   --mega-bg: #f9f9f9;
-  --mega-border: #e5e5e5;            /* neutral-200: 바깥 테두리 */
-  --mega-divider: #d4d4d4;           /* neutral-300: 컬럼 사이 세로선, 이미지 카드 테두리 */
-  --mega-ink-muted: #525252;         /* neutral-600: 하위 항목 */
+  --mega-border: #e5e5e5;
+  --mega-divider: #d4d4d4;
+  --mega-ink-muted: #525252;
   --mega-w: 920px;
-  --mega-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
-  --drawer-w: 380px;                 /* 태블릿·모바일 메뉴 드로어 최대 너비 (화면의 86%와 비교해 작은 값) [추정] */
-  --drawer-duration: 0.35s;          /* 드로어가 밀려 나오는 시간 [추정] */
+  --mega-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --drawer-w: 380px;
+  --drawer-duration: 0.35s;
   --dd-shadow: 0 10px 28px rgb(0 0 0 / 0.18);
-
-  /* ---------- Hero ---------- */
-  --hero-min-h: 560px;               /* 사용자 지시(시안 외): Hero = 창 높이(100svh), 이보다 낮은 창에서는 이 높이로 멈춤 */
+  --hero-min-h: 560px;
   --hero-bg-opacity: 0.5;
-  --hero-bg-inset: 0 -1px -3px 1px;  /* top right bottom left (Figma inset) */
-
-  /* [사용자 지시(시안 외 효과)] Hero: 마우스가 오른쪽 절반에 있으면 두 사진이 50:50 → 40:60 으로 바뀜 (js/hero.js) */
-  --hero-split-hover: 60;            /* 호버 시 오른쪽 사진 폭(%) — 왼쪽은 나머지(40) */
+  --hero-bg-inset: 0 -1px -3px 1px;
+  --hero-split-hover: 60;
   --hero-split-duration: 0.5s;
-  --mobile-slide-ms: 1000;           /* [사용자 지시] 모바일 슬라이드(Hero·BEST)가 서서히 넘어가는 시간(ms), 부드러운 가속·감속 (js/slide.js) */
-  --hero-autoplay-ms: 2500;          /* [사용자 지시] 모바일(767px 이하) Hero 사진 자동 넘김 간격(ms): 2.5초마다 (1초 → 너무 빨라 2.5초로) */
+  --mobile-slide-ms: 1000;
+  --hero-autoplay-ms: 2500;
   --hero-split-ease: ease;
-  /* [사용자 지시(시안 외 효과)] Collection 스크롤 등장 (js/reveal.js): 아래에서 올라오며 서서히 나타남, 사진은 위→아래로 열림 */
-  --reveal-duration: 1.1s;           /* 투명도·위로 올라오는 시간 [추정] */
-  --reveal-clip-duration: 1.3s;      /* 사진이 위→아래로 열리는 시간 [추정] */
-  --reveal-shift: 56px;              /* 올라오는 거리 [추정] */
+  --reveal-duration: 1.1s;
+  --reveal-clip-duration: 1.3s;
+  --reveal-shift: 56px;
   --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
-
-  /* ---------- Marquee ---------- */
   --marquee-py: 10px;
   --marquee-gap: 80px;
   --marquee-lh: 18px;
-  --marquee-duration: 40s;   /* 한 바퀴 약 40초 (사용자 지정, 조정 예정) */
+  --marquee-duration: 40s;
 }
-
-/* ---------- CTA 링크 (선 2개 + 텍스트 + 화살표) — 섹션별 시안 값이 다름 ---------- */
 :root {
   --cta-w: 252px;
   --cta-label-w: 140px;
   --cta-line-stroke: 0.5px;
-  --cta-line-box: 2px;             /* 선을 경계선 중앙에 걸치기 위한 SVG 박스 높이 */
-  --cta-arrow-offset-y: -0.332px;  /* 화살표 SVG 외곽선 여백 (inset -3.69%) */
-
-  /* BEST */
+  --cta-line-box: 2px;
+  --cta-arrow-offset-y: -0.332px;
   --cta-best-h: 46px;
   --cta-best-label-x: 9px;
   --cta-best-label-y: 12px;
   --cta-best-arrow-x: 227px;
-  --cta-best-arrow-y: 19px;           /* 사용자 요청: VIEW ALL HEARTS처럼 글자 중앙에 정렬 (글자 y + 7px). 시안은 14px */
+  --cta-best-arrow-y: 19px;
 }
-
-/* ---------- 원형 화살표 버튼 (Stores / SNS 공용) ---------- */
 :root {
   --round-btn-size: 72px;
-  --round-btn-arrow-x: 22px;          /* (72 − 28) ÷ 2 */
-  --round-btn-arrow-y: 28px;          /* (72 − 16) ÷ 2 */
+  --round-btn-arrow-x: 22px;
+  --round-btn-arrow-y: 28px;
   --round-btn-arrow-w: 28px;
   --round-btn-arrow-h: 16px;
-  --round-btn-arrow-img-x: -1.576px;  /* 화살표 SVG 외곽선 여백 (inset −5.63%) */
-  --round-btn-arrow-img-y: -0.757px;  /* (inset −4.73%) */
+  --round-btn-arrow-img-x: -1.576px;
+  --round-btn-arrow-img-y: -0.757px;
   --round-btn-arrow-img-w: 29.576px;
   --round-btn-arrow-img-h: 17.546px;
 }
-
-/* ---------- Stores (좌표는 Figma 1920 기준) ---------- */
 :root {
-  --stores-slide-ms: 500;              /* [사용자 지시(시안 외 효과)] 매장 넘길 때 밀려 들어오는 시간(ms) [추정] */
-  --stores-slide-shift: 28;            /* 밀려 들어오는 거리(px, 이미지 기준. 글씨는 60%) [추정] */
-  --stores-top-gap: 5px;               /* 다크 배경이 시작되는 y (위 5px은 흰색) */
+  --stores-slide-ms: 500;
+  --stores-slide-shift: 28;
+  --stores-top-gap: 5px;
   --stores-pt: 78px;
   --stores-pb: 52px;
   --stores-cols: minmax(0, 1022fr) minmax(320px, 514fr) minmax(0, 348fr);
   --stores-col-gap: 18px;
   --stores-row-gap: 32px;
-  --stores-image-w: 94.912%;           /* 970 ÷ 1022 */
+  --stores-image-w: 94.912%;
   --stores-image-ratio: 970 / 567;
-  --stores-card-pb: 19px;              /* 586 − 567 */
+  --stores-card-pb: 19px;
   --stores-next-ratio: 348 / 567;
-
-  /* 세로 라벨 (SINSA FLAGSHIP / 01 .) */
   --stores-indicator-w: 104px;
   --stores-indicator-h: 299px;
   --stores-indicator-pt: 16px;
   --stores-indicator-pr: 18px;
   --stores-indicator-pl: 12px;
-  --stores-indicator-name-w: 29px;     /* 회전 전 박스 (세로쓰기 폭 = 줄 높이) */
+  --stores-indicator-name-w: 29px;
   --stores-indicator-name-h: 198px;
   --stores-indicator-num-w: 44px;
   --stores-indicator-num-h: 59px;
-
-  /* 정보 영역 */
   --stores-info-h: 567px;
   --stores-info-pt: 23px;
   --section-title-h: 116px;
   --section-title-sub-lh: 59px;
   --section-title-main-lh: 68px;
-  --stores-address-mt: 47px;           /* 186 − (23 + 116) */
+  --stores-address-mt: 47px;
   --stores-address-h: 140px;
   --stores-address-name-lh: 20px;
   --stores-address-line-lh: 12px;
-  --stores-address-gap-name: 20px;     /* 매장명 → 주소 */
-  --stores-address-gap: 12px;          /* 주소 / 전화 / 영업시간 (시안 줄 간격 24px) */
-  --section-title-shift-y: -12px;       /* [추정] "STORES"가 시안에서 위 줄에 더 붙어 있음 (측정) */
-  --stores-name-shift-y: 1px;          /* [추정] 매장명 한글(Noto) 세로 보정 */
-  --stores-cta-mt: 30px;               /* 356 − (186 + 140) */
-  --stores-pager-mt: 94px;             /* 494 − (356 + 44) */
-  --stores-pager-gap: 12px;            /* 329.5 − 245.5 − 72 */
+  --stores-address-gap-name: 20px;
+  --stores-address-gap: 12px;
+  --section-title-shift-y: -12px;
+  --stores-name-shift-y: 1px;
+  --stores-cta-mt: 30px;
+  --stores-pager-mt: 94px;
+  --stores-pager-gap: 12px;
   --stores-pager-pr: 112.5px;
 }
-
-/* ---------- SNS (좌표는 Figma 1920 기준; 내부 좌표는 소개 영역/갤러리 기준) ---------- */
 :root {
-  --sns-w: 1453px;                    /* 220 ~ 1673 */
-  --sns-half-offset: 740px;           /* 좌측 220px = 50% − 740px */
-  --sns-pad: 48px;                    /* [추정] 1200~1919px 최소 좌우 여백 */
+  --sns-w: 1453px;
+  --sns-half-offset: 740px;
+  --sns-pad: 48px;
   --sns-pt: 115px;
-  --sns-pb: 97px;                     /* 711 − (115 + 499) */
-  --sns-cols: 298px 1fr;              /* 소개 영역 (220~518) / 갤러리 (518~1673) */
-  --sns-intro-h: 341px;               /* 아이콘 하단 (311 + 30) */
+  --sns-pb: 97px;
+  --sns-cols: 298px 1fr;
+  --sns-intro-h: 341px;
   --sns-line-x: 6px;
-  --sns-line-y: 140.5px;              /* 142 − 3 ÷ 2 (선 두께 3px 중앙) */
+  --sns-line-y: 140.5px;
   --sns-desc-x: 6px;
   --sns-desc-y: 171px;
   --sns-desc-w: 210px;
-  --sns-desc-w-wide: 420px;           /* [사용자 지시] 태블릿·모바일에서 소개 글이 제목 오른쪽에 놓일 때의 최대 폭 [추정] */
+  --sns-btn-scale-min: 0.55;
+  --sns-desc-w-wide: 420px;
   --sns-desc-lh: 30px;
   --sns-icons-x: 4px;
   --sns-icons-y: 311px;
   --sns-icon-size: 30px;
-  --sns-icons-gap: 24.5px;            /* 아이콘 x: 224 / 278 / 333 */
-  --sns-gallery-mt: 27px;             /* 142 − 115 */
+  --sns-icons-gap: 24.5px;
+  --sns-gallery-mt: 27px;
   --sns-gallery-ratio: 1155 / 472;
-  --sns-big-left: 29.784%;            /* 344 ÷ 1155 */
-  --sns-big-w: 40.866%;               /* 472 ÷ 1155 */
-  --sns-side-w: 31.429%;              /* 363 ÷ 1155 */
-  --sns-side-h: 76.907%;              /* 363 ÷ 472 (정사각형) */
-  --sns-side-top: 11.653%;            /* 55 ÷ 472 */
-  --sns-side-right-left: 68.571%;     /* 792 ÷ 1155 */
-  --sns-btn-top: 40.148%;             /* 189.5 ÷ 472 */
-  --sns-btn-left: 26.797%;            /* 309.5 ÷ 1155 */
-  --sns-btn-right-left: 67.576%;      /* 780.5 ÷ 1155 */
-  --sns-slide-duration: 0.4s;         /* 사용자 승인 (시안 외 효과) */
+  --sns-big-left: 29.784%;
+  --sns-big-w: 40.866%;
+  --sns-side-w: 31.429%;
+  --sns-side-h: 76.907%;
+  --sns-side-top: 11.653%;
+  --sns-side-right-left: 68.571%;
+  --sns-btn-top: 40.148%;
+  --sns-btn-left: 26.797%;
+  --sns-btn-right-left: 67.576%;
+  --sns-btn-cx-left: 29.913%;
+  --sns-btn-cx-right: 70.693%;
+  --sns-btn-cy: 47.775%;
+  --sns-slide-duration: 0.4s;
 }
-
-/* ---------- Footer (Figma 49:239, 1920×748 / 배경 검정) ---------- */
 :root {
-  --footer-w: 1760px;                 /* 80 ~ 1840 */
+  --footer-w: 1760px;
   --footer-pad: 80px;
   --footer-pt: 60px;
   --footer-pb: 40px;
-  --footer-gap: 80px;                 /* 위 영역(305) ~ 브랜드(263) 사이 */
+  --footer-gap: 80px;
   --footer-menu-max-w: 249px;
   --footer-menu-min-w: 160px;
   --footer-menu-gap: 5px;
@@ -283,7 +245,7 @@
   --footer-more-lh: 22px;
   --footer-menu-lh: 32px;
   --footer-info-w: 306px;
-  --footer-info-lh: 22px;             /* 문단 사이 빈 줄도 22px */
+  --footer-info-lh: 22px;
   --footer-info-gap: 24px;
   --footer-care-w: 175px;
   --footer-care-h: 39px;
@@ -292,56 +254,62 @@
   --footer-care-text-h: 20px;
   --footer-care-lh: 22px;
   --footer-brand-gap: 8px;
-  /* NUMBERING: 1760px 폭 기준 264.9px. 폭이 줄면 같은 비율로 줄임 (1920에서 시안 값과 일치) */
-  --footer-brand-fs-ratio: 0.15051136;  /* 264.9 ÷ 1760 */
+  --footer-brand-fs-ratio: 0.15051136;
   --footer-brand-lh: calc(260 / 264.9);
   --footer-brand-h: calc(232 / 264.9 * 1em);
   --footer-legal-lh: 23px;
 }
-
-/* ---------- Collection (좌표는 Figma 1920 기준, y는 섹션 상단 기준) ---------- */
 :root {
+  --cta-arrow-hover-scale: 1.3;
+  --cta-arrow-hover-shift: 3px;
+  --cta-arrow-bob-amp: 6px;
+  --cta-arrow-bob-duration: 0.9s;
+  --cta-arrow-hover-duration: 0.35s;
+  --cta-arrow-hover-ease: cubic-bezier(0.2, 1, 0.3, 1);
+  --to-top-size: 50px;
+  --to-top-w-hover: 140px;
+  --to-top-gap: 24px;
+  --to-top-show-at: 200;
+  --to-top-duration: 0.3s;
+  --inquiry-bg: #fee500;
+  --inquiry-ink: #191919;
+  --inquiry-stack-gap: 12px;
   --cta-collection-h: 44px;
   --cta-collection-label-x: 6px;
   --cta-collection-label-y: 9px;
   --cta-collection-arrow-x: 228px;
   --cta-collection-arrow-y: 16px;
-
-  /* [사용자 지시(시안 외 변경)] 1200px 이상에서 Collection 배율 = min(이 값, 화면 폭 ÷ 1920).
-     0.75 = 1920 이상에서도 75% 크기. 시안 크기로 되돌리려면 1 로 바꿈 */
   --collection-scale-max: 0.75;
-
   --collection-w: 1352px;
-  --collection-half-offset: 674px;        /* 좌측 286px = 50% − 674px (1920 기준 중앙에서 +2px) */
-  --collection-pad: 48px;                 /* [추정] 1200~1919px 최소 좌우 여백 */
-  --collection-dark-pt: 52px;             /* 탭 상단 y */
+  --collection-half-offset: 674px;
+  --collection-pad: 48px;
+  --collection-dark-pt: 52px;
   --collection-tabs-h: 24px;
-  --collection-tabs-gap: 33.6px;          /* [추정] 시안: Inter 공백 5개 폭 */
-  --collection-main-mt: 66px;             /* 142 − (52 + 24) */
+  --collection-tabs-gap: 33.6px;
+  --collection-main-mt: 66px;
   --collection-main-ratio: 730 / 764;
   --collection-sub-ratio: 514 / 614;
-  --collection-cols: 730fr 108fr 514fr;   /* 이미지1 / 사이 / 이미지2 (1352) */
-  --collection-sub-offset: 66.732%;       /* 343 / 514 (이미지2 폭 기준 %) */
-  --collection-heading-mt: 29px;          /* 935 − (142 + 764) */
-  --collection-title-lh: 166px;           /* Figma 텍스트 높이 */
-  --collection-subtitle-mt: -2px;         /* 1099 − (935 + 166) */
+  --collection-cols: 730fr 108fr 514fr;
+  --collection-sub-offset: 66.732%;
+  --collection-heading-mt: 29px;
+  --collection-title-lh: 166px;
+  --collection-subtitle-mt: -2px;
   --collection-subtitle-h: 41px;
-  --collection-gap-to-story: 60px;        /* 1200 − (1099 + 41) */
-  --collection-overlap: 158px;            /* 다크 영역이 스토리 이미지 뒤로 이어지는 길이 (1358 − 1200) */
+  --collection-gap-to-story: 60px;
+  --collection-dark-reach: 400px;
+  --collection-overlap: 158px;
   --collection-story-ratio: 1352 / 627;
-  --collection-desc-mt: 28px;             /* 655 − 627 */
+  --collection-desc-mt: 28px;
   --collection-desc-w: 818px;
-  --collection-desc-h: 68px;              /* Figma 텍스트 박스 고정 높이 (줄 간격은 normal) */
-  --collection-cta-mt: 33px;              /* 756 − (655 + 68) */
-  --collection-pb: 108px;                 /* 2108 − 2000 */
+  --collection-desc-h: 68px;
+  --collection-cta-mt: 33px;
+  --collection-pb: 108px;
 }
-
-/* ---------- BEST ---------- */
 :root {
   --best-intro-pt: 100px;
   --best-intro-pb: 40px;
   --best-intro-gap: 23px;
-  --best-lead-lh: 37px;            /* Figma 텍스트 높이 (Laila normal). 한글 폴백으로 늘어나는 줄 높이를 시안 값에 고정 */
+  --best-lead-lh: 37px;
   --best-spacer-left-max: 428px;
   --best-intro-max: 964px;
   --best-intro-min: 280px;
@@ -351,7 +319,7 @@
   --best-cards-min: 280px;
   --best-cards-gap: 30px;
   --best-products-pb: 10px;
-  --best-section-pb: 113px;        /* 프레임 943 − 내용 830 */
+  --best-section-pb: 113px;
   --best-label-pt: 16px;
   --best-label-h: 34px;
   --best-card-min-w: 240px;
@@ -359,28 +327,23 @@
   --best-prev-y: 130px;
   --best-prev-w: 152px;
   --best-prev-h: 151px;
-
-  /* [사용자 지시] 1920px(시안 폭)보다 넓은 화면에서 BEST 내용을 가운데에 둠: 좌우로 (화면 폭 − 1920) ÷ 2 만큼 띄움. 1920 이하는 0 */
+  --best-prev-photo-h: 532px;
   --best-frame-w: 1920px;
   --best-frame-pad: max(0px, calc((100% - var(--best-frame-w)) / 2));
-
-  /* [사용자 지시(시안 외 효과)] BEST 슬라이더: ← 버튼으로 카드가 한 칸씩 이동. 전환 0.4초(SNS 슬라이드와 같음) */
   --best-slide-duration: 0.4s;
-  --best-autoplay-mobile-ms: 2500;   /* [사용자 지시 해석] 모바일(767px 이하) BEST 자동 넘김 간격(ms). Hero 모바일과 같은 2.5초 [추정] */
-  --best-autoplay-ms: 1500;          /* 자동 넘김 간격(ms): 1.5초마다 한 칸 (사용자 지시, 3초 → 2초 → 1.5초) */
-  --best-rank-gap: 12px;             /* [추정] 라벨 "TOP1  #3729" 에서 순위와 번호 사이 간격 */
-  --best-card1-offset: 8px;          /* 시안: 1번 카드가 2~4번(최대 540px)보다 8px 짧음(이미지 532px). 창이 좁아져도 이 차이를 유지 */
+  --best-autoplay-mobile-ms: 2500;
+  --best-autoplay-ms: 1500;
+  --best-rank-gap: 12px;
+  --best-card1-offset: 8px;
 }
-
-/* ---------- Tablet / Mobile 값 (시안 없음 — 데스크톱 규칙을 벗어나지 않게 [추정]) ---------- */
 @media (max-width: 1199px) {
   :root {
-    --page-gutter: 35px;   /* 로고 좌측 여백과 동일 */
+    --page-gutter: 35px;
   }
 }
-
 @media (max-width: 767px) {
   :root {
+    --to-top-gap: 16px;
     --page-gutter: 16px;
     --header-logo-x: 16px;
     --header-logo-w: 130px;

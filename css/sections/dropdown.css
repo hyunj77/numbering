@@ -1,15 +1,7 @@
-/* ==========================================================================
-   Header 드롭다운 (사용자 지시, 시안 외) — GNB 하위 메뉴 / 언어 / 검색 / 마이페이지
-   - 모양은 사용자가 준 언어 메뉴 스크린샷 기준: 흰 패널, 지금 선택 = 검정, 나머지 = 회색 (호버·포커스 시 검정) [추정]
-   - 열리는 조건: GNB 와 마이페이지 = 마우스를 올리거나 키보드 포커스, 모든 항목 = 눌렀을 때(.is-open, js/dropdown.js)
-   - 패널은 position: absolute 라 헤더·페이지 레이아웃은 변하지 않음. 패널 위쪽 투명한 다리(padding-top)로 마우스가 글자→패널로 지나가도 안 닫힘
-   ========================================================================== */
-
 .gnb__item,
 .utils__item {
   position: relative;
 }
-
 .dd {
   position: absolute;
   top: 100%;
@@ -20,20 +12,15 @@
   visibility: hidden;
   transform: translateY(var(--dd-shift));
   pointer-events: none;
-  /* 닫힐 때는 전환 없이 즉시 사라짐 → 옆 메뉴로 옮겨 가면 앞 메뉴는 바로 닫히고 하나만 열려 있음. 열릴 때만 페이드(아래 열림 상태) */
   transition: none;
 }
-
 .dd--right {
   right: calc(-1 * var(--dd-pad) / 2);
   left: auto;
 }
-
-/* 언어 / 검색 / 마이페이지는 아이콘 아래 오른쪽 끝에 맞춤 */
 .utils__item .dd--right {
   right: 0;
 }
-
 .dd__panel {
   min-width: 165px;
   padding: var(--dd-pad);
@@ -45,13 +32,11 @@
   letter-spacing: var(--ls-inter-14);
   white-space: nowrap;
 }
-
 .dd__panel ul {
   display: grid;
 }
-
 .dd__panel a,
-.dd__panel button[role="option"] {
+.dd__panel button[role=option] {
   display: block;
   width: 100%;
   padding: var(--dd-row-py) 0;
@@ -60,32 +45,25 @@
   cursor: pointer;
   transition: color var(--dd-duration) ease;
 }
-
 .dd__panel a:focus-visible,
 .dd__panel button:focus-visible {
   outline: 1px solid var(--dd-ink);
   outline-offset: 2px;
 }
-
 @media (hover: hover) {
   .dd__panel a:hover,
-  .dd__panel button[role="option"]:hover {
+  .dd__panel button[role=option]:hover {
     color: var(--dd-ink);
   }
 }
-
-/* SHOP 메가메뉴 — 에디토리얼 보더-그리드 (사용자 지시): 오프화이트 패널 + 얇은 테두리·그림자, 4컬럼(Category / Line / Special / Featured) 사이에 세로 분할선.
-   패널은 GNB 가운데(화면 가운데)에 맞춰 헤더 아래에 펼쳐짐 */
 .gnb__item--mega {
-  position: static; /* 패널의 기준이 SHOP 글자가 아니라 가운데 정렬된 .gnb 가 되게 */
+  position: static;
 }
-
 .dd--mega {
   left: 50%;
   width: min(var(--mega-w), calc(100vw - 48px));
   translate: -50% 0;
 }
-
 .dd--mega .dd__panel {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1.25fr;
@@ -96,58 +74,47 @@
   box-shadow: var(--mega-shadow);
   white-space: normal;
 }
-
 .dd--mega .dd__group {
   padding: 28px 28px 32px;
   border-right: 1px solid var(--mega-divider);
 }
-
 .dd--mega .dd__group:last-child {
   border-right: 0;
 }
-
 .dd--mega .dd__title {
   margin-bottom: 14px;
   padding: 0;
   color: var(--dd-ink);
   font-size: var(--fs-12);
-  font-weight: 600; /* font-semibold (Pretendard 는 700 으로 표시) */
-  letter-spacing: 0.1em; /* tracking-widest */
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-
 .dd--mega .dd__group li a {
   color: var(--mega-ink-muted);
-  font-weight: 300; /* font-light (Pretendard 는 200 으로 표시) */
+  font-weight: 300;
 }
-
 @media (hover: hover) {
   .dd--mega .dd__group li a:hover {
     color: var(--dd-ink);
     font-weight: 600;
   }
 }
-
 .dd--mega .dd__group li a:focus-visible {
   color: var(--dd-ink);
   font-weight: 600;
 }
-
-/* Featured: 이미지 카드 2장을 세로로. 이미지 테두리 1px neutral-300 */
 .dd__featured {
   display: flex;
   flex-direction: column;
 }
-
 .dd__card {
   display: block;
   margin-bottom: 18px;
 }
-
 .dd__card:last-child {
   margin-bottom: 0;
 }
-
 .dd__card img {
   display: block;
   width: 100%;
@@ -155,7 +122,6 @@
   border: 1px solid var(--mega-divider);
   object-fit: cover;
 }
-
 .dd--mega .dd__card .dd__caption {
   display: flex;
   gap: 10px;
@@ -168,42 +134,33 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
 .dd__shop-now {
   padding-bottom: 1px;
   border-bottom: 1px solid var(--dd-ink);
   font-size: 11px;
   letter-spacing: 0.1em;
 }
-
-/* 메가메뉴 이외의 .dd__title (예: 계정 메뉴의 CS Center) */
 .dd__title {
   margin-bottom: 4px;
   padding: var(--dd-row-py) 0;
   color: var(--dd-ink);
   font-weight: var(--fw-bold);
 }
-/* 언어: 맨 위 = 지금 선택(검정), 아래 = 선택지(회색) */
 .dd__current {
   padding: var(--dd-row-py) 0;
   color: var(--dd-ink);
 }
-
-.dd__panel [aria-selected="true"] {
+.dd__panel [aria-selected=true] {
   color: var(--dd-ink-muted);
 }
-
-/* 검색 팝업 */
 .dd--search .dd__panel {
   min-width: 320px;
 }
-
 .dd__search {
   display: flex;
   gap: 12px;
   align-items: center;
 }
-
 .dd__search input {
   flex: 1;
   min-width: 0;
@@ -216,29 +173,22 @@
   letter-spacing: inherit;
   outline: none;
 }
-
 .dd__search input::placeholder {
   color: var(--dd-ink-muted);
 }
-
 .dd__search button {
   padding: 8px 0;
   color: var(--dd-ink);
   font-weight: var(--fw-bold);
   cursor: pointer;
 }
-
-/* ---------- 열림 상태 ---------- */
 .is-open > .dd {
   opacity: 1;
   visibility: visible;
   transform: none;
   pointer-events: auto;
-  transition:
-    opacity var(--dd-duration) ease,
-    transform var(--dd-duration) ease;
+  transition: opacity var(--dd-duration) ease, transform var(--dd-duration) ease;
 }
-
 @media (hover: hover) and (min-width: 1024px) {
   .gnb__item:hover > .dd,
   .utils__item--hover:hover > .dd {
@@ -246,54 +196,38 @@
     visibility: visible;
     transform: none;
     pointer-events: auto;
-    transition:
-      opacity var(--dd-duration) ease,
-      transform var(--dd-duration) ease;
+    transition: opacity var(--dd-duration) ease, transform var(--dd-duration) ease;
   }
-
-  /* 패널에 마우스가 있는 동안 GNB 글자의 호버 띠도 유지 */
   .gnb__item:hover > .gnb__link .gnb__text::before {
     transform: scaleX(1);
   }
 }
-
-/* 키보드 포커스(:focus-visible)일 때만 (마우스로 눌러서 생긴 포커스로는 안 열리고 안 닫힘이 남지 않게) */
 .gnb__item:has(:focus-visible) > .dd,
 .utils__item--hover:has(:focus-visible) > .dd {
   opacity: 1;
   visibility: visible;
   transform: none;
   pointer-events: auto;
-  transition:
-    opacity var(--dd-duration) ease,
-    transform var(--dd-duration) ease;
+  transition: opacity var(--dd-duration) ease, transform var(--dd-duration) ease;
 }
-
 .gnb__item.is-open > .gnb__link .gnb__text::before {
   transform: scaleX(1);
 }
-
 @media (prefers-reduced-motion: reduce) {
   .dd,
   .dd__panel a,
-  .dd__panel button[role="option"] {
+  .dd__panel button[role=option] {
     transition: none;
   }
 }
-
-/* 계정 드롭다운의 CS Center 그룹 */
 .dd--account .dd__group {
   margin-top: 4px;
 }
-
-/* 데스크톱에서는 드로어 전용 항목·머리·바탕 가림막을 숨김 */
 .gnb__head,
 .gnb__item--drawer-only,
 .gnb-overlay {
   display: none;
 }
-
-/* ---------- 태블릿 / 모바일 (1023px 이하): 오른쪽에서 밀려 나오는 전체 메뉴 드로어, 모든 하위 메뉴가 펼쳐져 있음 ---------- */
 @media (max-width: 1023px) {
   .gnb {
     position: fixed;
@@ -310,17 +244,13 @@
     background: var(--color-black);
     transform: translateX(100%);
     visibility: hidden;
-    transition:
-      transform var(--drawer-duration) ease,
-      visibility 0s linear var(--drawer-duration);
+    transition: transform var(--drawer-duration) ease, visibility 0s linear var(--drawer-duration);
   }
-
   .site-header.is-menu-open .gnb {
     transform: none;
     visibility: visible;
     transition-delay: 0s;
   }
-
   .gnb__head {
     display: flex;
     align-items: center;
@@ -328,13 +258,11 @@
     height: var(--header-h);
     flex: none;
   }
-
   .gnb__head-title {
     font-size: var(--fs-14);
     letter-spacing: var(--ls-inter-14);
     color: var(--dd-ink-muted);
   }
-
   .gnb__close {
     width: var(--header-icon-size);
     height: var(--header-icon-size);
@@ -343,21 +271,17 @@
     line-height: 1;
     cursor: pointer;
   }
-
   .gnb__list {
     flex-direction: column;
     gap: var(--space-24);
   }
-
   .gnb__item--drawer-only {
     display: block;
   }
-
   .gnb__link {
     width: auto;
-    pointer-events: none; /* 드로어에서는 항목이 이미 펼쳐져 있어 제목 역할만 함 */
+    pointer-events: none;
   }
-
   .gnb .dd {
     position: static;
     padding: 0;
@@ -367,7 +291,6 @@
     pointer-events: auto;
     transition: none;
   }
-
   .gnb .dd__panel {
     min-width: 0;
     padding: 4px 0 0 var(--space-16);
@@ -376,57 +299,46 @@
     color: var(--color-white);
     white-space: normal;
   }
-
   .gnb .dd--mega {
     left: auto;
     width: auto;
     translate: none;
   }
-
   .gnb .dd--mega .dd__panel {
     display: block;
     border: 0;
     background: transparent;
     box-shadow: none;
   }
-
   .gnb .dd--mega .dd__group {
     padding: 0;
     border-right: 0;
   }
-
   .gnb .dd--mega .dd__title {
     margin-bottom: 0;
     padding: var(--dd-row-py) 0;
     color: var(--color-white);
   }
-
   .gnb .dd--mega .dd__group li a {
     color: var(--dd-ink-muted);
     font-weight: var(--fw-regular);
   }
-
   .gnb .dd--mega .dd__group li a:hover {
     color: var(--color-white);
     font-weight: var(--fw-regular);
   }
-
   .gnb .dd__featured {
-    display: none; /* 드로어에는 이미지 카드 없이 텍스트 메뉴만 */
+    display: none;
   }
-
   .gnb__item--mega {
     position: static;
   }
-
   .gnb .dd__title {
     color: var(--color-white);
   }
-
   .gnb .dd__panel a:hover {
     color: var(--color-white);
   }
-
   .gnb-overlay {
     position: fixed;
     inset: 0;
@@ -435,17 +347,13 @@
     background: rgb(0 0 0 / 0.5);
     opacity: 0;
     visibility: hidden;
-    transition:
-      opacity var(--drawer-duration) ease,
-      visibility 0s linear var(--drawer-duration);
+    transition: opacity var(--drawer-duration) ease, visibility 0s linear var(--drawer-duration);
   }
-
   .site-header.is-menu-open .gnb-overlay {
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
   }
-
   @media (prefers-reduced-motion: reduce) {
     .gnb,
     .gnb-overlay {
@@ -453,7 +361,6 @@
     }
   }
 }
-
 html.is-scroll-locked {
   overflow: hidden;
 }

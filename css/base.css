@@ -1,129 +1,110 @@
-/* ==========================================================================
-   Base — @font-face / 기본 타이포
-   실제 사용하는 굵기만 로드 (CDN 미사용, assets/fonts)
-   ========================================================================== */
-
-/* ---------- Pretendard (Inter 대체) ---------- */
 @font-face {
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   font-weight: 200;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Pretendard-ExtraLight.woff2') format('woff2');
+  src: url(../assets/fonts/Pretendard-ExtraLight.woff2) format("woff2");
 }
 @font-face {
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Pretendard-Regular.woff2') format('woff2');
+  src: url(../assets/fonts/Pretendard-Regular.woff2) format("woff2");
 }
 @font-face {
-  font-family: 'Pretendard';
+  font-family: "Pretendard";
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Pretendard-Bold.woff2') format('woff2');
+  src: url(../assets/fonts/Pretendard-Bold.woff2) format("woff2");
 }
-
-/* ---------- Pretendard Latin (라틴 문자만 — 한글은 Noto Sans KR로 폴백시키기 위한 범위 제한 패밀리) ---------- */
 @font-face {
-  font-family: 'Pretendard Latin';
+  font-family: "Pretendard Latin";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Pretendard-Regular.woff2') format('woff2');
-  unicode-range: U+0020-007E, U+00A0-00FF, U+2000-206F;
+  src: url(../assets/fonts/Pretendard-Regular.woff2) format("woff2");
+  unicode-range:
+    U+0020-007E,
+    U+00A0-00FF,
+    U+2000-206F;
 }
-
-/* ---------- Laila ---------- */
 @font-face {
-  font-family: 'Laila';
+  font-family: "Laila";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Laila-Regular.woff2') format('woff2');
+  src: url(../assets/fonts/Laila-Regular.woff2) format("woff2");
 }
-
-/* ---------- KoHo ---------- */
 @font-face {
-  font-family: 'KoHo';
+  font-family: "KoHo";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/KoHo-Regular.woff2') format('woff2');
+  src: url(../assets/fonts/KoHo-Regular.woff2) format("woff2");
 }
-
-/* ---------- 42dot Sans ---------- */
 @font-face {
-  font-family: '42dot Sans';
+  font-family: "42dot Sans";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/42dotSans-Regular.woff2') format('woff2');
+  src: url(../assets/fonts/42dotSans-Regular.woff2) format("woff2");
 }
-
-/* ---------- Montserrat ---------- */
 @font-face {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Montserrat-Regular.woff2') format('woff2');
+  src: url(../assets/fonts/Montserrat-Regular.woff2) format("woff2");
 }
 @font-face {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Montserrat-Medium.woff2') format('woff2');
+  src: url(../assets/fonts/Montserrat-Medium.woff2) format("woff2");
 }
 @font-face {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 800;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/Montserrat-ExtraBold.woff2') format('woff2');
+  src: url(../assets/fonts/Montserrat-ExtraBold.woff2) format("woff2");
 }
-
-/* ---------- Inria Serif ---------- */
 @font-face {
-  font-family: 'Inria Serif';
+  font-family: "Inria Serif";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/InriaSerif-Regular.woff2') format('woff2');
+  src: url(../assets/fonts/InriaSerif-Regular.woff2) format("woff2");
 }
-
-/* ---------- Noto Sans KR (한글 폴백, 굵기별 정적 파일) ---------- */
 @font-face {
-  font-family: 'Noto Sans KR';
+  font-family: "Noto Sans KR";
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/NotoSansKR-Regular.woff2') format('woff2');
+  src: url(../assets/fonts/NotoSansKR-Regular.woff2) format("woff2");
 }
 @font-face {
-  font-family: 'Noto Sans KR';
+  font-family: "Noto Sans KR";
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/NotoSansKR-Medium.woff2') format('woff2');
+  src: url(../assets/fonts/NotoSansKR-Medium.woff2) format("woff2");
 }
 @font-face {
-  font-family: 'Noto Sans KR';
+  font-family: "Noto Sans KR";
   font-weight: 800;
   font-style: normal;
   font-display: swap;
-  src: url('../assets/fonts/NotoSansKR-ExtraBold.woff2') format('woff2');
+  src: url(../assets/fonts/NotoSansKR-ExtraBold.woff2) format("woff2");
 }
-
-/* ---------- Base ---------- */
 body {
   font-family: var(--font-inter);
   font-weight: var(--fw-regular);
   line-height: normal;
   color: var(--color-black);
   background: var(--color-white);
-  font-synthesis: none; /* 합성 볼드/이탤릭 금지 */
+  font-synthesis: none;
 }

@@ -1,9 +1,3 @@
-/* ==========================================================================
-   Components — 공통 컴포넌트
-   ========================================================================== */
-
-/* ---------- CTA 링크 ----------
-   선(위/아래) + 라벨 + 화살표. 위치 값은 variant(--best 등)가 CSS 변수로 지정 */
 .cta {
   position: relative;
   display: block;
@@ -15,8 +9,6 @@
   line-height: normal;
   color: var(--cta-color, var(--color-black));
 }
-
-/* 선: 0.5px 헤어라인을 경계선 중앙에 벡터로 그림 (img로 넣으면 1px로 반올림되어 시안보다 진해짐) */
 .cta__line {
   position: absolute;
   left: 0;
@@ -25,20 +17,16 @@
   height: var(--cta-line-box);
   overflow: visible;
 }
-
 .cta__line path {
   stroke: currentColor;
   stroke-width: var(--cta-line-stroke);
 }
-
 .cta__line--top {
   top: calc(var(--cta-line-box) / -2);
 }
-
 .cta__line--bottom {
   top: calc(var(--cta-h) - var(--cta-line-box) / 2);
 }
-
 .cta__label {
   position: absolute;
   top: var(--cta-label-y);
@@ -46,13 +34,48 @@
   width: var(--cta-label-w);
   white-space: nowrap;
 }
-
 .cta__arrow {
   position: absolute;
   top: calc(var(--cta-arrow-y) + var(--cta-arrow-offset-y));
   left: var(--cta-arrow-x);
 }
-
+@property --cta-arrow-bob { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --cta-arrow-amp { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@keyframes cta-arrow-bob {
+  from {
+    --cta-arrow-bob: 0;
+  }
+  to {
+    --cta-arrow-bob: 1;
+  }
+}
+@media (hover: hover) {
+  .cta__arrow {
+    translate: calc(var(--cta-arrow-amp) * var(--cta-arrow-bob)) 0;
+    transition: transform var(--cta-arrow-hover-duration) var(--cta-arrow-hover-ease), --cta-arrow-amp var(--cta-arrow-hover-duration) var(--cta-arrow-hover-ease);
+    animation: cta-arrow-bob var(--cta-arrow-bob-duration) ease-in-out infinite alternate paused;
+  }
+  .cta:hover .cta__arrow {
+    --cta-arrow-amp: var(--cta-arrow-bob-amp);
+    transform: translateX(var(--cta-arrow-hover-shift)) scale(var(--cta-arrow-hover-scale));
+    animation-play-state: running;
+  }
+}
+.cta:focus-visible .cta__arrow {
+  --cta-arrow-amp: var(--cta-arrow-bob-amp);
+  transform: translateX(var(--cta-arrow-hover-shift)) scale(var(--cta-arrow-hover-scale));
+  animation-play-state: running;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta__arrow,
+  .cta:hover .cta__arrow,
+  .cta:focus-visible .cta__arrow {
+    transform: none;
+    translate: none;
+    transition: none;
+    animation: none;
+  }
+}
 .cta--best {
   --cta-h: var(--cta-best-h);
   --cta-label-x: var(--cta-best-label-x);
@@ -60,7 +83,6 @@
   --cta-arrow-x: var(--cta-best-arrow-x);
   --cta-arrow-y: var(--cta-best-arrow-y);
 }
-
 .cta--collection,
 .cta--stores {
   --cta-h: var(--cta-collection-h);
@@ -69,14 +91,11 @@
   --cta-arrow-x: var(--cta-collection-arrow-x);
   --cta-arrow-y: var(--cta-collection-arrow-y);
 }
-
-/* ---------- 섹션 제목 (회색 28px 소제목 + 굵은 72px 제목) — Stores / SNS 공용 ---------- */
 .section-title {
   height: var(--section-title-h);
   font-family: var(--font-inter);
   font-weight: var(--fw-regular);
 }
-
 .section-title__sub {
   position: relative;
   top: var(--inter-shift-y);
@@ -87,13 +106,10 @@
   white-space: pre;
   color: var(--color-gray-text);
 }
-
-/* 소제목 앞의 10px 공백 (SNS 소제목) */
 .section-title__space {
   font-size: 10px;
-  line-height: 0; /* 글자 크기가 다른 인라인 박스가 줄 높이(59px)를 늘리지 않게 */
+  line-height: 0;
 }
-
 .section-title__main {
   display: block;
   margin-top: var(--section-title-shift-y);
@@ -104,9 +120,6 @@
   white-space: pre;
   color: var(--section-title-color, var(--color-black));
 }
-
-/* ---------- 원형 화살표 버튼 (72×72) ----------
-   원(circle)과 화살표는 시안의 SVG를 그대로 사용. 다음(next)은 좌우 반전 */
 .round-btn {
   position: relative;
   display: block;
@@ -114,12 +127,10 @@
   width: var(--round-btn-size);
   height: var(--round-btn-size);
 }
-
 .round-btn__circle {
   width: 100%;
   height: 100%;
 }
-
 .round-btn__arrow {
   position: absolute;
   top: var(--round-btn-arrow-y);
@@ -127,7 +138,6 @@
   width: var(--round-btn-arrow-w);
   height: var(--round-btn-arrow-h);
 }
-
 .round-btn__arrow img {
   position: absolute;
   top: var(--round-btn-arrow-img-y);
@@ -135,13 +145,9 @@
   width: var(--round-btn-arrow-img-w);
   height: var(--round-btn-arrow-img-h);
 }
-
 .round-btn--next .round-btn__arrow {
   transform: scaleX(-1);
 }
-
-/* ---------- Marquee (이벤트 배너) ----------
-   두 그룹을 같은 속도로 -100% 이동시켜 끊김 없는 무한 스크롤 (오른쪽 → 왼쪽) */
 .marquee {
   display: flex;
   width: 100%;
@@ -153,7 +159,6 @@
   line-height: var(--marquee-lh);
   white-space: nowrap;
 }
-
 .marquee__group {
   display: flex;
   flex-shrink: 0;
@@ -161,33 +166,182 @@
   padding-right: var(--marquee-gap);
   animation: marquee-scroll var(--marquee-duration) linear infinite;
 }
-
 .marquee__item {
   flex-shrink: 0;
   font-weight: var(--fw-regular);
 }
-
-/* 시안의 폰트 규칙 그대로: Inter(영문) / Inria Serif / Noto Sans KR(Inter 지정 한글) */
 .marquee__item--inter {
   position: relative;
   top: var(--inter-shift-y);
   font-family: var(--font-inter);
   letter-spacing: var(--ls-inter-13);
 }
-
 .marquee__item--inria {
   font-family: var(--font-inria);
 }
-
 .marquee__item--inter-kr {
   font-family: var(--font-inter-kr);
 }
-
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);
   }
   to {
     transform: translateX(-100%);
+  }
+}
+.to-top {
+  position: fixed;
+  right: max(var(--to-top-gap), calc((100% - var(--best-frame-w)) / 2 + var(--to-top-gap)));
+  bottom: var(--to-top-gap);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--to-top-size);
+  height: var(--to-top-size);
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--color-black);
+  color: var(--color-white);
+  box-shadow: 0 0 0 4px rgb(128 128 128 / 0.35);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition:
+    width var(--to-top-duration) ease,
+    border-radius var(--to-top-duration) ease,
+    background-color var(--to-top-duration) ease,
+    color var(--to-top-duration) ease,
+    box-shadow var(--to-top-duration) ease,
+    opacity var(--to-top-duration) ease,
+    transform var(--to-top-duration) ease,
+    visibility 0s linear var(--to-top-duration);
+}
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+.to-top__icon {
+  width: 12px;
+  fill: currentcolor;
+  transition: transform var(--to-top-duration) ease;
+}
+.to-top__text {
+  position: absolute;
+  font-family: var(--font-inter);
+  font-size: var(--fs-13);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(150%);
+  transition: opacity var(--to-top-duration) ease, transform var(--to-top-duration) ease;
+}
+@media (hover: hover) {
+  .to-top:hover {
+    width: var(--to-top-w-hover);
+    border-radius: 50px;
+    background: var(--color-white);
+    color: var(--color-black);
+    box-shadow: 0 0 0 4px rgb(128 128 128 / 0.35), inset 0 0 0 1px var(--color-black);
+  }
+  .to-top:hover .to-top__icon {
+    transform: translateY(-200%);
+  }
+  .to-top:hover .to-top__text {
+    opacity: 1;
+    transform: none;
+  }
+}
+.to-top:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 4px;
+}
+html.is-scroll-locked .to-top {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .to-top,
+  .to-top__icon,
+  .to-top__text {
+    transition: none;
+  }
+}
+.inquiry {
+  position: fixed;
+  right: max(var(--to-top-gap), calc((100% - var(--best-frame-w)) / 2 + var(--to-top-gap)));
+  bottom: var(--to-top-gap);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--to-top-size);
+  height: var(--to-top-size);
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--inquiry-bg);
+  color: var(--inquiry-ink);
+  box-shadow: 0 0 0 4px rgb(128 128 128 / 0.35);
+  transition:
+    bottom var(--to-top-duration) ease,
+    width var(--to-top-duration) ease,
+    border-radius var(--to-top-duration) ease,
+    box-shadow var(--to-top-duration) ease;
+}
+.to-top.is-visible ~ .inquiry {
+  bottom: calc(var(--to-top-gap) + var(--to-top-size) + var(--inquiry-stack-gap));
+}
+.inquiry__icon {
+  width: 22px;
+  fill: currentcolor;
+  transition: transform var(--to-top-duration) ease;
+}
+.inquiry__text {
+  position: absolute;
+  font-family: var(--font-inter);
+  font-size: var(--fs-13);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(150%);
+  transition: opacity var(--to-top-duration) ease, transform var(--to-top-duration) ease;
+}
+@media (hover: hover) {
+  .inquiry:hover {
+    width: var(--to-top-w-hover);
+    border-radius: 50px;
+    box-shadow: 0 0 0 4px rgb(128 128 128 / 0.35), inset 0 0 0 1px var(--inquiry-ink);
+  }
+  .inquiry:hover .inquiry__icon {
+    transform: translateY(-200%);
+  }
+  .inquiry:hover .inquiry__text {
+    opacity: 1;
+    transform: none;
+  }
+}
+.inquiry:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 4px;
+}
+html.is-scroll-locked .inquiry {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .inquiry,
+  .inquiry__icon,
+  .inquiry__text {
+    transition: none;
   }
 }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NUMBERING</title>
-  <!-- JS 가 켜져 있을 때만 .js 를 붙임: Collection 스크롤 등장(js/reveal.js)이 숨김 상태로 시작하게 (JS 가 꺼져 있으면 처음부터 보임) -->
+  
   <script>document.documentElement.classList.add('js');</script>
 
   <link rel="stylesheet" href="css/tokens.css">
@@ -18,10 +18,10 @@
   <link rel="stylesheet" href="css/sections/stores.css">
   <link rel="stylesheet" href="css/sections/sns.css">
   <link rel="stylesheet" href="css/sections/footer.css">
+  <link rel="stylesheet" href="css/sections/reveal.css">
 </head>
 <body>
 
-  <!-- ===== Header ===== -->
   <header class="site-header">
     <a class="site-header__logo" href="#">
       <img src="assets/images/hero/logo-transparent.png" alt="NUMBERING">
@@ -111,10 +111,10 @@
   </header>
 
   <main>
-    <!-- ===== Hero ===== -->
+    
     <section class="hero" aria-label="메인 비주얼">
       <div class="hero__bg">
-        <!-- 사진마다 담는 칸(.hero__bg-col)을 따로 둠: 마우스 효과(js/hero.js)로 칸 폭이 50:50 ↔ 40:60 으로 바뀌어도 서로 침범하지 않게 -->
+        
         <div class="hero__bg-col hero__bg-col--left">
           <img class="hero__bg-img--left" src="assets/images/hero/main-banner-D1.jpg" alt="차량 위에 반지를 낀 손을 올린 모습">
         </div>
@@ -123,7 +123,6 @@
         </div>
       </div>
 
-      <!-- 이벤트 배너 (마퀴) -->
       <div class="marquee" role="region" aria-label="이벤트 안내">
         <div class="marquee__group">
           <p class="marquee__item marquee__item--inter">October's TOP20 : GET 20% OFF</p>
@@ -152,9 +151,8 @@
       </div>
     </section>
 
-    <!-- ===== BEST ===== -->
     <section class="best" aria-label="BEST">
-      <div class="best__intro">
+      <div class="best__intro" data-reveal>
         <div class="best__spacer best__spacer--left" aria-hidden="true"></div>
         <div class="best__intro-body">
           <p class="best__lead">세상의 모든 영감을 담아낸 세련된 무게감, 당신의 아름다운 애티튜드를 완성할 단 하나의 주얼리.</p>
@@ -168,7 +166,7 @@
         <div class="best__spacer best__spacer--right" aria-hidden="true"></div>
       </div>
 
-      <div class="best__products">
+      <div class="best__products" data-reveal="fade" data-reveal-delay="0.15">
         <div class="best__spacer best__spacer--offset" aria-hidden="true"></div>
         <ul class="best__cards">
           <li class="product-card product-card--1">
@@ -210,10 +208,9 @@
       </div>
     </section>
 
-    <!-- ===== Collection ===== -->
     <section class="collection" aria-label="Collection">
       <div class="collection__dark">
-        <ul class="collection__tabs" aria-label="컬렉션 종류">
+        <ul class="collection__tabs" aria-label="컬렉션 종류" data-reveal>
           <li><button class="collection__tab is-active" type="button" aria-pressed="true">Heart</button></li>
           <li><button class="collection__tab" type="button" aria-pressed="false">Ribbon</button></li>
           <li><button class="collection__tab" type="button" aria-pressed="false">Star</button></li>
@@ -249,11 +246,10 @@
       </div>
     </section>
 
-    <!-- ===== Stores ===== -->
     <section class="stores" aria-label="Stores">
       <div class="stores__row">
-        <!-- 매장 이미지 + 세로 라벨 -->
-        <article class="store-card">
+        
+        <article class="store-card" data-reveal>
           <div class="store-card__image">
             <img src="assets/images/stores/sinsa-flagship.jpg" alt="나무 패널 벽과 유리 진열대가 놓인 신사 플래그십 스토어 내부" data-store-image>
           </div>
@@ -263,8 +259,7 @@
           </div>
         </article>
 
-        <!-- 매장 정보 (슬라이더 전환 시 함께 바뀜) -->
-        <div class="store-info" aria-live="polite">
+        <div class="store-info" aria-live="polite" data-reveal data-reveal-delay="0.15">
           <h2 class="section-title store-info__heading">
             <span class="section-title__sub"> Republic of Korea</span>
             <span class="section-title__main">STORES</span>
@@ -293,19 +288,17 @@
           </div>
         </div>
 
-        <!-- 다음 매장 이미지 -->
-        <div class="store-next">
+        <div class="store-next" data-reveal="fade" data-reveal-delay="0.3">
           <img src="assets/images/stores/hannam-flagship.jpg" alt="유리 진열대와 꽃이 놓인 테이블, 회색 벽면의 NUMBERING 간판이 보이는 한남 플래그십 스토어 입구" data-store-preview>
         </div>
       </div>
     </section>
 
-    <!-- ===== SNS ===== -->
     <section class="sns" aria-label="SNS">
       <div class="sns__inner">
-        <!-- 소개 -->
-        <div class="sns__intro">
-          <!-- 제목+선 / 글+아이콘 묶음: 데스크톱은 기존처럼 절대 위치(묶음은 위치에 영향 없음), 태블릿·모바일(≤1199px)은 이 둘을 나란히 놓음 -->
+        
+        <div class="sns__intro" data-reveal>
+          
           <div class="sns__head">
             <h2 class="section-title sns__title">
               <span class="section-title__sub"><span class="section-title__space"> </span>Follow Us</span>
@@ -323,8 +316,7 @@
           </div>
         </div>
 
-        <!-- 이미지 갤러리 -->
-        <div class="sns__gallery" data-sns-gallery>
+        <div class="sns__gallery" data-sns-gallery data-reveal data-reveal-delay="0.15">
           <div class="sns__viewport" data-sns-viewport>
             <figure class="sns__photo" data-slot="0">
               <img src="assets/images/sns/numbering_official/numbering_official_1788943008_3982265046818513338_5563404703_1.jpg" alt="NUMBERING 인스타그램 게시물 12" draggable="false">
@@ -349,10 +341,9 @@
     </section>
   </main>
 
-  <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="footer__inner">
-      <div class="footer__top">
+      <div class="footer__top" data-reveal>
         <nav class="footer__menu" aria-label="푸터 메뉴">
           <p class="footer__more">More</p>
           <ul class="footer__list">
@@ -387,12 +378,26 @@
         </div>
       </div>
 
-      <div class="footer__brand">
+      <div class="footer__brand" data-reveal data-reveal-delay="0.15">
         <p class="footer__logo">NUMBERING</p>
         <p class="footer__legal">     © NUMBERING <a href="#">Terms &amp; Conditions</a> <a href="#">Our privacy policy</a></p>
       </div>
     </div>
   </footer>
+
+  <button class="to-top" type="button" aria-label="맨 위로 이동">
+    <svg class="to-top__icon" viewBox="0 0 384 512" aria-hidden="true">
+      <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
+    </svg>
+    <span class="to-top__text">Back to Top</span>
+  </button>
+
+  <a class="inquiry" href="https://pf.kakao.com/_qMjDT" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on KakaoTalk (opens in a new window)">
+    <svg class="inquiry__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.86 5.33 4.66 6.75L5.7 21.2c-.1.37.3.66.62.45l4.2-2.8c.49.06.98.1 1.48.1 5.52 0 10-3.58 10-8s-4.48-8-10-8z"></path>
+    </svg>
+    <span class="inquiry__text">Chat with Us</span>
+  </a>
 
   <script src="js/slide.js" defer></script>
   <script src="js/hero.js" defer></script>
@@ -404,5 +409,6 @@
   <script src="js/stores.js" defer></script>
   <script src="js/sns.js" defer></script>
   <script src="js/best.js" defer></script>
+  <script src="js/top.js" defer></script>
 </body>
 </html>

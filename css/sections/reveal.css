@@ -1,0 +1,41 @@
+.js [data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease) var(--reveal-delay, 0s),
+    transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay, 0s),
+    clip-path var(--reveal-clip-duration) var(--reveal-ease) var(--reveal-delay, 0s);
+}
+.js [data-reveal]:not(.is-revealed) {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+}
+.js [data-reveal=fade]:not(.is-revealed) {
+  transform: none;
+}
+.js figure[data-reveal] {
+  clip-path: inset(0 0 0 0);
+}
+.js figure[data-reveal]:not(.is-revealed) {
+  clip-path: inset(0 0 100% 0);
+}
+.js [data-reveal].is-reveal-done {
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+  transition: none;
+}
+@media (max-width: 767px) {
+  .js [data-reveal]:not(.is-revealed) {
+    --reveal-shift: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-reveal]:not(.is-revealed) {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+}

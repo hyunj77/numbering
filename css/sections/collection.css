@@ -1,48 +1,42 @@
-/* ==========================================================================
-   Section — Collection
-   상단 다크(#2a2a2a) 영역 + 하단 스토리. 다크 영역이 스토리 이미지 뒤로 158px 이어짐.
-
-   [사용자 지시(시안 외 변경)] 1200px 이상에서는 **이미지 크기만** --collection-scale 배율로 줄임.
-   - 배율 = min(--collection-scale-max(0.75), 화면 폭 ÷ 1920). 최댓값은 tokens.css 한 곳에서 조절
-     (1 로 바꾸면 1920 이상에서 시안 크기).
-   - 줄이는 것: 콘텐츠 폭과 왼쪽 시작 위치 → 이미지 3장(폭 기준 grid/aspect-ratio)과 이미지2의 세로 위치(이미지 폭 기준 %).
-   - 줄이지 않는 것: 글자(폰트·크기·자간·줄 높이), CTA, 여백, 탭 간격 등 나머지 모든 값은 시안(1920) 그대로.
-   - 1200px 미만에서는 배율 1 이라 기존 태블릿/모바일 값 그대로.
-   ========================================================================== */
-
-/* 100cqw 는 세로 스크롤바를 뺀 폭(= 레이아웃 폭). 100vw 는 스크롤바를 포함해 배율이 어긋남 */
 main {
   container-type: inline-size;
 }
-
 .collection {
   --collection-scale: 1;
-
   padding-bottom: var(--collection-pb);
   background: var(--color-white);
 }
-
 @media (min-width: 1200px) {
   .collection {
-    --collection-scale: min(var(--collection-scale-max), tan(atan2(100cqw, 1920px))); /* min(최댓값, 폭 ÷ 1920) */
+    --collection-scale: min(var(--collection-scale-max), tan(atan2(100cqw, 1920px)));
   }
 }
-
-/* 콘텐츠 폭 1352px × 배율, 가운데 정렬 (시안 1920 기준 left 286px = 50% − 674px). --collection-pad 는 1200px 미만에서만 작동 */
 .collection__inner {
   width: min(calc(var(--collection-w) * var(--collection-scale)), calc(100% - 2 * var(--collection-pad)));
   margin-left: max(var(--collection-pad), calc(50% - var(--collection-half-offset) * var(--collection-scale)));
 }
-
-/* ---------- Dark area ---------- */
 .collection__dark {
+  position: relative;
+  isolation: isolate;
   padding-top: var(--collection-dark-pt);
   padding-bottom: calc(var(--collection-gap-to-story) + var(--collection-overlap));
-  background: var(--color-surface-dark);
   color: var(--color-white);
 }
-
-/* ---------- Tabs (활성: 흰색 / 비활성: 회색) ---------- */
+.collection__dark::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-surface-dark);
+}
+@media (min-width: 1200px) {
+  .collection__dark::before {
+    width: calc(50% + var(--collection-dark-reach) * var(--collection-scale));
+  }
+}
 .collection__tabs {
   display: flex;
   flex-wrap: wrap;
@@ -50,7 +44,6 @@ main {
   justify-content: center;
   height: var(--collection-tabs-h);
 }
-
 .collection__tab {
   font-family: var(--font-inter);
   font-size: var(--fs-24);
@@ -60,21 +53,14 @@ main {
   white-space: nowrap;
   color: var(--color-gray-tab);
 }
-
 .collection__tab.is-active {
   color: var(--color-white);
 }
-
-/* [사용자 지시(시안 외 효과)] Codrops "Menu Hover Effects"(Adsila)의 하이라이트
-   - 선택 안 된 탭에 마우스를 올리면 글자가 흰색으로 바뀌고(0.3초) 글자 뒤 아래쪽 절반에 반투명 흰색(30%) 띠가 왼쪽에서 오른쪽으로 깔림
-     (마우스가 있는 기기 + 키보드 포커스). 마우스를 치우면 왼쪽으로 접힘
-   - 활성 탭은 띠가 **그대로 남아 있음**: 클릭하면 그 탭의 띠가 남고 이전 활성 탭의 띠는 사라짐 */
 .collection__tab {
   position: relative;
-  isolation: isolate; /* 띠(::before)가 글자 뒤에 오게 */
+  isolation: isolate;
   transition: color var(--motion-duration) ease;
 }
-
 .collection__tab::before {
   content: "";
   position: absolute;
@@ -89,48 +75,38 @@ main {
   transition: transform var(--hover-bar-duration) var(--hover-bar-ease);
   pointer-events: none;
 }
-
 .collection__tab.is-active::before {
   transform: scaleX(1);
 }
-
 @media (hover: hover) {
   .collection__tab:not(.is-active):hover {
     color: var(--color-white);
   }
-
   .collection__tab:not(.is-active):hover::before {
     transform: scaleX(1);
   }
 }
-
 .collection__tab:not(.is-active):focus-visible {
   color: var(--color-white);
 }
-
 .collection__tab:not(.is-active):focus-visible::before {
   transform: scaleX(1);
 }
-
 @media (prefers-reduced-motion: reduce) {
   .collection__tab,
   .collection__tab::before {
     transition: none;
   }
 }
-
-/* ---------- Gallery ---------- */
 .collection__gallery {
   display: grid;
   grid-template-columns: var(--collection-cols);
   margin-top: var(--collection-main-mt);
 }
-
 .collection__main {
   grid-column: 1;
   aspect-ratio: var(--collection-main-ratio);
 }
-
 .collection__main img,
 .collection__sub img,
 .collection__story-image img {
@@ -138,12 +114,10 @@ main {
   height: 100%;
   object-fit: cover;
 }
-
 .collection__heading {
   grid-column: 1;
   margin-top: var(--collection-heading-mt);
 }
-
 .collection__title {
   font-family: var(--font-koho);
   font-size: var(--fs-128);
@@ -153,7 +127,6 @@ main {
   white-space: nowrap;
   color: var(--color-white);
 }
-
 .collection__subtitle {
   height: var(--collection-subtitle-h);
   margin-top: var(--collection-subtitle-mt);
@@ -163,68 +136,20 @@ main {
   line-height: normal;
   color: var(--color-white);
 }
-
 .collection__sub {
   grid-column: 3;
   grid-row: 1 / span 2;
   align-self: start;
-  margin-top: var(--collection-sub-offset); /* 이미지2 폭 기준 % 라서 이미지와 같이 줄어듦 */
+  margin-top: var(--collection-sub-offset);
   aspect-ratio: var(--collection-sub-ratio);
 }
-
-/* [사용자 지시(시안 외 효과)] 스크롤 등장 (js/reveal.js): 스크롤을 내려 화면에 들어오면
-   투명 → 불투명 + 아래에서 위로 --reveal-shift 만큼 올라옴. 사진(figure)은 여기에 위→아래로 열리는 clip-path 가 더해짐.
-   요소의 자리·크기는 그대로(transform/opacity/clip-path 만 바뀜). 끝나면(.is-reveal-done) 효과 속성을 모두 제거.
-   JS 가 꺼져 있으면(.js 없음) 처음부터 보임 */
-.js [data-reveal] {
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity var(--reveal-duration) var(--reveal-ease) var(--reveal-delay, 0s),
-    transform var(--reveal-duration) var(--reveal-ease) var(--reveal-delay, 0s),
-    clip-path var(--reveal-clip-duration) var(--reveal-ease) var(--reveal-delay, 0s);
-}
-
-.js [data-reveal]:not(.is-revealed) {
-  opacity: 0;
-  transform: translateY(var(--reveal-shift));
-}
-
-.js figure[data-reveal] {
-  clip-path: inset(0 0 0 0);
-}
-
-.js figure[data-reveal]:not(.is-revealed) {
-  clip-path: inset(0 0 100% 0);
-}
-
-.js [data-reveal].is-reveal-done {
-  opacity: 1;
-  transform: none;
-  clip-path: none;
-  transition: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .js [data-reveal],
-  .js [data-reveal]:not(.is-revealed) {
-    opacity: 1;
-    transform: none;
-    clip-path: none;
-    transition: none;
-  }
-}
-
-/* ---------- Story ---------- */
 .collection__story {
   position: relative;
   margin-top: calc(-1 * var(--collection-overlap));
 }
-
 .collection__story-image {
   aspect-ratio: var(--collection-story-ratio);
 }
-
 .collection__desc {
   max-width: var(--collection-desc-w);
   min-height: var(--collection-desc-h);
@@ -236,49 +161,36 @@ main {
   word-break: keep-all;
   color: var(--color-black);
 }
-
-/* CTA — 크기·글자·선·화살표는 BEST 의 `VIEW TOP20` 과 같은 `.cta--best` 를 그대로 씀 (사용자 지시) */
 .collection__story .cta {
   margin-top: var(--collection-cta-mt);
 }
-
-/* ==========================================================================
-   Tablet / Mobile (시안 없음 [추정]) — 배율 1, 위 규칙의 값이 그대로 적용됨
-   ========================================================================== */
 @media (max-width: 1199px) {
   :root {
     --collection-pad: var(--page-gutter);
     --collection-overlap: 100px;
   }
 }
-
 @media (max-width: 767px) {
   :root {
     --collection-overlap: 60px;
     --collection-gap-to-story: 40px;
     --collection-tabs-gap: 20px;
   }
-
   .collection__tabs {
     height: auto;
     row-gap: var(--space-8);
   }
-
-  /* 1열로 쌓기: 이미지1 → 타이틀 → 이미지2 */
   .collection__gallery {
     grid-template-columns: 1fr;
   }
-
   .collection__title {
     font-size: 80px;
     line-height: normal;
     letter-spacing: 16px;
   }
-
   .collection__subtitle {
     height: auto;
   }
-
   .collection__sub {
     grid-column: 1;
     grid-row: auto;

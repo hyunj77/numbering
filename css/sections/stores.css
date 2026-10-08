@@ -1,24 +1,16 @@
-/* ==========================================================================
-   Section — Stores
-   3열(매장 이미지 1022 / 정보 514 / 다음 이미지 348, 간격 18) — 1920에서 정확히 일치
-   ========================================================================== */
-
 .stores {
   position: relative;
   padding-top: var(--stores-pt);
   padding-bottom: var(--stores-pb);
   background: var(--color-white);
-  overflow-x: clip; /* 넘길 때 글씨가 옆에서 밀려 들어오는 동안 화면 밖으로 나가 가로 스크롤이 생기지 않게 */
+  overflow-x: clip;
 }
-
-/* 다크 배경: 상단 5px은 흰색 */
 .stores::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: var(--stores-top-gap) 0 0;
   background: var(--color-surface-dark);
 }
-
 .stores__row {
   position: relative;
   display: grid;
@@ -26,27 +18,21 @@
   gap: var(--stores-row-gap) var(--stores-col-gap);
   align-items: start;
 }
-
-/* ---------- 매장 이미지 카드 ---------- */
 .store-card {
   position: relative;
   padding-bottom: var(--stores-card-pb);
 }
-
 .store-card__image {
   width: var(--stores-image-w);
   aspect-ratio: var(--stores-image-ratio);
-  overflow: clip; /* 넘길 때 사진이 옆에서 밀려 들어와도 칸 밖으로 나가지 않게 (js/stores.js) */
+  overflow: clip;
 }
-
 .store-card__image img,
 .store-next img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-/* ---------- 세로 라벨 ---------- */
 .store-card__indicator {
   position: absolute;
   right: 0;
@@ -56,14 +42,12 @@
   align-items: flex-end;
   justify-content: flex-end;
   width: var(--stores-indicator-w);
-  min-height: var(--stores-indicator-h); /* 내용이 길면(HANNAM FLAGSHIP) 자라도록 — 시안 299px은 최소값 */
+  min-height: var(--stores-indicator-h);
   padding: var(--stores-indicator-pt) var(--stores-indicator-pr) var(--stores-indicator-pt) var(--stores-indicator-pl);
   overflow: clip;
   background: var(--color-white-99);
   color: var(--color-gray-text);
 }
-
-/* 세로쓰기 + 180° = 시안의 −90° 회전 (아래에서 위로 읽힘) */
 .store-card__name,
 .store-card__number {
   flex-shrink: 0;
@@ -74,7 +58,6 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
-
 .store-card__name {
   width: var(--stores-indicator-name-w);
   min-height: var(--stores-indicator-name-h);
@@ -83,7 +66,6 @@
   letter-spacing: var(--ls-inter-24-thin);
   text-transform: uppercase;
 }
-
 .store-card__number {
   width: var(--stores-indicator-num-w);
   min-height: var(--stores-indicator-num-h);
@@ -91,27 +73,21 @@
   font-size: var(--fs-36);
   font-weight: var(--fw-bold);
 }
-
 .store-card__number .is-thin {
   font-weight: var(--fw-extralight);
 }
-
 .store-card__number .is-tight {
   letter-spacing: calc(var(--ls-store-num) + var(--ls-store-num-fix));
 }
-
-/* ---------- 정보 영역 ---------- */
 .store-info {
   height: var(--stores-info-h);
   padding-top: var(--stores-info-pt);
   color: var(--color-white-99);
 }
-
 .store-info__heading {
   max-width: 302px;
   --section-title-color: var(--color-white-99);
 }
-
 .store-info__address {
   height: var(--stores-address-h);
   max-width: 366px;
@@ -119,7 +95,6 @@
   font-family: var(--font-montserrat);
   font-style: normal;
 }
-
 .store-info__name {
   position: relative;
   top: var(--stores-name-shift-y);
@@ -127,23 +102,19 @@
   font-weight: var(--fw-extrabold);
   line-height: var(--stores-address-name-lh);
 }
-
 .store-info__name + .store-info__line {
   margin-top: var(--stores-address-gap-name);
 }
-
 .store-info__line {
   margin-top: var(--stores-address-gap);
   font-size: var(--fs-14);
   font-weight: var(--fw-medium);
   line-height: var(--stores-address-line-lh);
 }
-
 .store-info .cta {
   margin-top: var(--stores-cta-mt);
   --cta-color: var(--color-white-99);
 }
-
 .store-info__pager {
   display: flex;
   gap: var(--stores-pager-gap);
@@ -151,44 +122,28 @@
   padding-right: var(--stores-pager-pr);
   margin-top: var(--stores-pager-mt);
 }
-
-/* ---------- 다음 매장 이미지 ---------- */
 .store-next {
   aspect-ratio: var(--stores-next-ratio);
   overflow: clip;
 }
-
-/* ==========================================================================
-   Tablet / Mobile (시안 없음 [추정]) — 1열로 쌓기, 다음 이미지 숨김
-   ========================================================================== */
 @media (max-width: 1199px) {
   .stores__row {
     grid-template-columns: 1fr;
   }
-
   .store-info {
     height: auto;
     padding-inline: var(--page-gutter);
   }
-
   .store-info__pager {
-    justify-content: flex-start;
+    justify-content: flex-end;
     padding-right: 0;
   }
-
   .store-next {
     display: none;
   }
 }
-
-/* 모바일: 세로 라벨(299px)이 이미지 안에 들어오도록 이미지 비율을 1:1로 [추정] */
 @media (max-width: 767px) {
   .stores {
     --stores-image-ratio: 1 / 1;
-  }
-
-  /* [사용자 지시] 모바일에서만: 하단 원형 화살표(이전/다음)를 오른쪽 끝으로. 웹·태블릿은 그대로 */
-  .store-info__pager {
-    justify-content: flex-end;
   }
 }

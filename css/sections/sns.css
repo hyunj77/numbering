@@ -1,39 +1,26 @@
-/* ==========================================================================
-   Section — SNS
-   소개 영역(제목/선/설명/아이콘) + 이미지 3장 갤러리. 갤러리는 1155×472 비율을 유지하며
-   이미지·원형 버튼 위치를 % 로 지정 (1920에서 시안 좌표와 일치)
-   ========================================================================== */
-
 .sns {
   padding-top: var(--sns-pt);
   padding-bottom: var(--sns-pb);
   background: var(--color-white);
 }
-
-/* 콘텐츠 폭 1453px (1920 기준 left 220px). 좁아지면 좌우 --sns-pad 확보 */
 .sns__inner {
   display: grid;
   grid-template-columns: var(--sns-cols);
   width: min(var(--sns-w), calc(100% - 2 * var(--sns-pad)));
   margin-left: max(var(--sns-pad), calc(50% - var(--sns-half-offset)));
 }
-
-/* ---------- 소개 영역 ---------- */
 .sns__intro {
   position: relative;
   height: var(--sns-intro-h);
 }
-
 .sns__title {
   white-space: nowrap;
 }
-
 .sns__line {
   position: absolute;
   top: var(--sns-line-y);
   left: var(--sns-line-x);
 }
-
 .sns__desc {
   position: absolute;
   top: var(--sns-desc-y);
@@ -45,7 +32,6 @@
   line-height: var(--sns-desc-lh);
   color: var(--color-gray-text);
 }
-
 .sns__icons {
   position: absolute;
   top: var(--sns-icons-y);
@@ -53,35 +39,28 @@
   display: flex;
   gap: var(--sns-icons-gap);
 }
-
 .sns__icon {
   display: block;
   width: var(--sns-icon-size);
   height: var(--sns-icon-size);
 }
-
 .sns__icon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-/* ---------- 갤러리 ---------- */
 .sns__gallery {
   position: relative;
   margin-top: var(--sns-gallery-mt);
   aspect-ratio: var(--sns-gallery-ratio);
 }
-
-/* 슬라이드 영역 — 갤러리 밖으로 나가는 이미지를 잘라냄. 버튼은 이 영역 밖(위)에 둠 */
 .sns__viewport {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  isolation: isolate; /* 가운데 이미지(z-index)가 원형 버튼 위로 올라오지 않게 */
+  isolation: isolate;
   touch-action: pan-y;
 }
-
 .sns__photo {
   position: absolute;
   z-index: 1;
@@ -91,20 +70,15 @@
     width var(--sns-slide-duration) ease,
     height var(--sns-slide-duration) ease;
 }
-
 .sns__photo.is-instant {
   transition: none;
 }
-
 .sns__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   user-select: none;
 }
-
-/* 칸(slot) 위치 — 0 왼쪽(363) / 1 가운데(472, 위에 겹침) / 2 오른쪽(363)
-   -1, 3 은 화면 밖 대기 위치 (이동 중에만 사용) */
 .sns__photo[data-slot="-1"],
 .sns__photo[data-slot="0"],
 .sns__photo[data-slot="2"],
@@ -113,23 +87,18 @@
   width: var(--sns-side-w);
   height: var(--sns-side-h);
 }
-
 .sns__photo[data-slot="-1"] {
   left: calc(-1 * var(--sns-side-w));
 }
-
 .sns__photo[data-slot="0"] {
   left: 0;
 }
-
 .sns__photo[data-slot="2"] {
   left: var(--sns-side-right-left);
 }
-
 .sns__photo[data-slot="3"] {
   left: 100%;
 }
-
 .sns__photo[data-slot="1"] {
   z-index: 2;
   top: 0;
@@ -137,95 +106,58 @@
   width: var(--sns-big-w);
   height: 100%;
 }
-
-/* 원형 화살표 버튼 (이미지 경계에 걸쳐 놓임) */
 .sns__gallery .round-btn {
   position: absolute;
   top: var(--sns-btn-top);
   left: var(--sns-btn-left);
 }
-
 .sns__gallery .round-btn--next {
   left: var(--sns-btn-right-left);
 }
-
-/* ==========================================================================
-   Tablet / Mobile (시안 없음 [추정]) — 소개 영역 위, 갤러리 아래로 쌓기
-   ========================================================================== */
 @media (max-width: 1199px) {
   .sns__inner {
     --sns-pad: var(--page-gutter);
-
     grid-template-columns: 1fr;
   }
-
   .sns__gallery {
     margin-top: var(--space-40);
   }
-
-  /* [사용자 지시] 태블릿·모바일: 소개 글과 SNS 아이콘을 "Follow Us / SNS" 제목 오른쪽에 나란히 (웹은 시안 그대로).
-     제목+선 묶음은 그대로 두고(선은 제목 묶음 기준 절대 위치), 글+아이콘 묶음을 오른쪽에 세로로 */
   .sns__intro {
     display: flex;
     gap: var(--space-24);
     align-items: flex-start;
     height: auto;
   }
-
   .sns__head {
     position: relative;
     flex: none;
     min-height: calc(var(--sns-line-y) + 3px);
   }
-
   .sns__body {
     flex: 1;
     min-width: 0;
   }
-
   .sns__desc {
     position: static;
     width: auto;
     max-width: var(--sns-desc-w-wide);
   }
-
   .sns__icons {
     position: static;
     margin-top: var(--space-16);
     margin-left: var(--sns-desc-x);
   }
 }
-
-/* 모바일(767px 이하): 갤러리가 작아져 72px 원형 버튼을 이미지 경계에 걸쳐 두면 사진을 가리므로(이전엔 숨김),
-   [사용자 지시] 같은 시안 스타일의 원형 화살표를 갤러리 아래 오른쪽 끝에 둠 (STORES 모바일 화살표와 같은 크기·간격).
-   태블릿(768~1199px)과 웹은 그대로 */
-@media (max-width: 767px) {
+@media (max-width: 1919px) {
   .sns__gallery {
-    margin-bottom: calc(var(--space-24) + var(--round-btn-size)); /* 아래에 놓이는 버튼 자리 */
+    container-type: inline-size;
   }
-
   .sns__gallery .round-btn {
-    top: 100%;
-    right: calc(var(--round-btn-size) + var(--stores-pager-gap));
-    left: auto;
-    margin-top: var(--space-24);
+    top: calc(var(--sns-btn-cy) - var(--round-btn-size) / 2);
+    left: calc(var(--sns-btn-cx-left) - var(--round-btn-size) / 2);
+    transform: scale(clamp(var(--sns-btn-scale-min), tan(atan2(100cqw, 1155px)), 1));
   }
-
   .sns__gallery .round-btn--next {
-    right: 0;
-    left: auto;
-  }
-
-  /* 시안의 원은 "흰색 62%" 라 사진 위에서만 보이고 흰 배경에서는 안 보임 → 아래에 놓인 버튼은 STORES 와 같은 회색 윤곽 원으로 (화살표 위치는 그대로) */
-  .sns__gallery .round-btn__circle {
-    visibility: hidden;
-  }
-
-  .sns__gallery .round-btn::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border: 2px solid var(--color-gray-ctrl);
-    border-radius: 50%;
+    left: calc(var(--sns-btn-cx-right) - var(--round-btn-size) / 2);
   }
 }
