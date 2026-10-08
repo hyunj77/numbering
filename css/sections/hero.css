@@ -181,6 +181,13 @@
   object-fit: cover;
 }
 
+/* [사용자 지시(시안 외 변경)] 햄버거 버튼은 태블릿·모바일(1199px 이하)에서만 보임. 데스크톱(1200px 이상)에서는 숨김 (시안에는 있던 4번째 아이콘) */
+@media (min-width: 1200px) {
+  [data-menu-toggle] {
+    display: none;
+  }
+}
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;

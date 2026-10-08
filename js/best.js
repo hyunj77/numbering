@@ -200,7 +200,7 @@
   // 멈추는 경우: 마우스가 상품 영역 위에 있을 때 / 키보드 포커스가 안에 있을 때 / 탭이 숨겨졌을 때 /
   //             BEST 가 화면에 안 보일 때 / 모션 줄이기 설정 / 1200px 미만(스트립). 조건이 풀리면 3초를 처음부터 다시 셈
   const autoplayValue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--best-autoplay-ms'));
-  const AUTOPLAY_MS = Number.isFinite(autoplayValue) ? autoplayValue : 3000;
+  const AUTOPLAY_MS = Number.isFinite(autoplayValue) ? autoplayValue : 1500;
   const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const hold = { hover: false, focus: false, hidden: document.hidden, offscreen: true };
   let autoplayTimer = 0;
