@@ -176,18 +176,20 @@
   const scrollNext = () => {
     const list = [...cards.querySelectorAll(':scope > .product-card')];
     const base = cards.getBoundingClientRect().left;
-    // 스냅(scroll-snap-align: start)은 카드 왼쪽 가장자리를 맞추므로 카드의 스크롤 좌표 = 카드 왼쪽 위치
-    const lefts = list.map((c) => c.getBoundingClientRect().left - base + cards.scrollLeft);
+    // 스냅(scroll-snap-align: start)은 카드 왼쪽 가장자리를 (scroll-padding 만큼 띄워) 맞춤: 카드의 스크롤 좌표 = 카드 왼쪽 위치 − scroll-padding
+    const padStart = parseFloat(getComputedStyle(cards).scrollPaddingInlineStart) || 0;
+    const lefts = list.map((c) => c.getBoundingClientRect().left - base + cards.scrollLeft - padStart);
     const current = cards.scrollLeft;
     const max = cards.scrollWidth - cards.clientWidth;
+    const go = (left) => (window.NumberingSlide ? window.NumberingSlide(cards, left) : cards.scrollTo({ left, behavior: 'smooth' }));
     if (current >= max - 2) {
-      cards.scrollTo({ left: 0, behavior: 'smooth' }); // 맨 끝이면 맨 앞으로
+      go(0); // 맨 끝이면 맨 앞으로
       return;
     }
     let i = lefts.findIndex((l) => l >= current - 2); // 지금 맨 앞에 보이는 카드
     if (i === -1) i = list.length - 1;
     const target = Math.min(i + 1, list.length - 1);
-    cards.scrollTo({ left: Math.min(max, lefts[target]), behavior: 'smooth' });
+    go(Math.max(0, Math.min(max, lefts[target])));
   };
 
   prevBtn.addEventListener('click', () => {
@@ -205,7 +207,12 @@
   const hold = { hover: false, focus: false, hidden: document.hidden, offscreen: true };
   let autoplayTimer = 0;
 
-  const canAutoplay = () => desktop.matches && !reduceQuery.matches && !hold.hover && !hold.focus && !hold.hidden && !hold.offscreen;
+  // [사용자 지시] 모바일(≤767px)은 사진 한 장씩 보이는 스트립이 자동으로 넘어감(간격 --best-autoplay-mobile-ms). 태블릿(768~1199px)은 자동 넘김 없음
+  const mobile = window.matchMedia('(max-width: 767px)');
+  const mobileValue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--best-autoplay-mobile-ms'));
+  const AUTOPLAY_MOBILE_MS = Number.isFinite(mobileValue) ? mobileValue : 2500;
+  hold.touch = false;
+  const canAutoplay = () => (desktop.matches || mobile.matches) && !reduceQuery.matches && !hold.hover && !hold.focus && !hold.hidden && !hold.offscreen && !hold.touch;
 
   function scheduleAutoplay() {
     window.clearTimeout(autoplayTimer);
@@ -213,9 +220,12 @@
     if (!canAutoplay()) return;
     autoplayTimer = window.setTimeout(() => {
       autoplayTimer = 0;
-      if (canAutoplay()) slideNext();
+      if (canAutoplay()) {
+        if (desktop.matches) slideNext();
+        else scrollNext();
+      }
       scheduleAutoplay();
-    }, AUTOPLAY_MS);
+    }, desktop.matches ? AUTOPLAY_MS : AUTOPLAY_MOBILE_MS);
   }
 
   products.addEventListener('pointerenter', (event) => {
@@ -237,6 +247,10 @@
     hold.focus = false;
     scheduleAutoplay();
   });
+  // 손가락이 닿아 있는 동안 멈춤, 떼면 간격을 다시 셈
+  cards.addEventListener('touchstart', () => { hold.touch = true; scheduleAutoplay(); }, { passive: true });
+  ['touchend', 'touchcancel'].forEach((name) => cards.addEventListener(name, () => { hold.touch = false; scheduleAutoplay(); }, { passive: true }));
+  mobile.addEventListener('change', scheduleAutoplay);
   document.addEventListener('visibilitychange', () => {
     hold.hidden = document.hidden;
     scheduleAutoplay();

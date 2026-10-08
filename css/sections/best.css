@@ -283,8 +283,38 @@
   }
 }
 
+/* [사용자 지시] 태블릿(768~1199px): 상품 사진이 3장 보이고 옆이 잘리지 않게. 카드 사이 간격 = 좌우 여백이라
+   카드 폭 = (영역 − 간격 2개) ÷ 3 → 3장이 정확히 들어가고 4번째 카드가 비치지 않음. 넘길 때도 카드 단위로 딱 맞춰 멈춤(스냅) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .best__cards {
+    gap: var(--page-gutter);
+    scroll-padding-inline: var(--page-gutter);
+  }
+
+  .product-card {
+    flex: 0 0 calc((100% - 2 * var(--page-gutter)) / 3);
+    width: calc((100% - 2 * var(--page-gutter)) / 3);
+    max-width: none;
+    min-width: 0;
+  }
+}
+
 @media (max-width: 767px) {
   .best__prev {
     display: none;
+  }
+
+  /* [사용자 지시] 모바일: 상품 사진을 한 장씩 화면 폭으로 보여주고 옆으로 넘김(스크롤 스냅). 카드 사이 간격을 여백의 2배로 둬서 옆 카드가 비치지 않음 */
+  .best__cards {
+    gap: calc(var(--page-gutter) * 2);
+    scroll-padding-inline: var(--page-gutter);
+  }
+
+  .product-card {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    scroll-snap-stop: always; /* 세게 밀어도 한 장씩 */
   }
 }

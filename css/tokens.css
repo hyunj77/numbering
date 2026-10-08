@@ -144,6 +144,8 @@
   /* [사용자 지시(시안 외 효과)] Hero: 마우스가 오른쪽 절반에 있으면 두 사진이 50:50 → 40:60 으로 바뀜 (js/hero.js) */
   --hero-split-hover: 60;            /* 호버 시 오른쪽 사진 폭(%) — 왼쪽은 나머지(40) */
   --hero-split-duration: 0.5s;
+  --mobile-slide-ms: 1000;           /* [사용자 지시] 모바일 슬라이드(Hero·BEST)가 서서히 넘어가는 시간(ms), 부드러운 가속·감속 (js/slide.js) */
+  --hero-autoplay-ms: 2500;          /* [사용자 지시] 모바일(767px 이하) Hero 사진 자동 넘김 간격(ms): 2.5초마다 (1초 → 너무 빨라 2.5초로) */
   --hero-split-ease: ease;
   /* [사용자 지시(시안 외 효과)] Collection 스크롤 등장 (js/reveal.js): 아래에서 올라오며 서서히 나타남, 사진은 위→아래로 열림 */
   --reveal-duration: 1.1s;           /* 투명도·위로 올라오는 시간 [추정] */
@@ -247,6 +249,7 @@
   --sns-desc-x: 6px;
   --sns-desc-y: 171px;
   --sns-desc-w: 210px;
+  --sns-desc-w-wide: 420px;           /* [사용자 지시] 태블릿·모바일에서 소개 글이 제목 오른쪽에 놓일 때의 최대 폭 [추정] */
   --sns-desc-lh: 30px;
   --sns-icons-x: 4px;
   --sns-icons-y: 311px;
@@ -363,6 +366,7 @@
 
   /* [사용자 지시(시안 외 효과)] BEST 슬라이더: ← 버튼으로 카드가 한 칸씩 이동. 전환 0.4초(SNS 슬라이드와 같음) */
   --best-slide-duration: 0.4s;
+  --best-autoplay-mobile-ms: 2500;   /* [사용자 지시 해석] 모바일(767px 이하) BEST 자동 넘김 간격(ms). Hero 모바일과 같은 2.5초 [추정] */
   --best-autoplay-ms: 1500;          /* 자동 넘김 간격(ms): 1.5초마다 한 칸 (사용자 지시, 3초 → 2초 → 1.5초) */
   --best-rank-gap: 12px;             /* [추정] 라벨 "TOP1  #3729" 에서 순위와 번호 사이 간격 */
   --best-card1-offset: 8px;          /* 시안: 1번 카드가 2~4번(최대 540px)보다 8px 짧음(이미지 532px). 창이 좁아져도 이 차이를 유지 */

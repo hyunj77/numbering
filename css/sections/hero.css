@@ -252,3 +252,37 @@
     display: none;
   }
 }
+
+/* ==========================================================================
+   Mobile + Tablet (1199px 이하, 사용자 지시) — 50:50 이던 두 사진을 한 장씩 꽉 차게 보여주고 손가락으로 옆으로 넘김(스크롤 스냅)
+   (처음엔 모바일 767px 이하만 → 사용자가 태블릿도 같게 요청해 1199px 이하로 넓힘. iPad Pro 1024px 포함) 웹(1200px 이상)은 그대로. 마우스 40:60 효과(js/hero.js)는 이 구간에서 칸 폭을 쓰지 않아 영향 없음
+   ========================================================================== */
+@media (max-width: 1199px) {
+  .hero__bg {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain; /* 끝에서 더 밀어도 뒤로 가기·새로고침 제스처로 넘어가지 않게 */
+    scrollbar-width: none;
+    pointer-events: auto; /* 터치로 넘길 수 있게 (데스크톱에서는 장식이라 none) */
+    transition: none;
+  }
+
+  .hero__bg::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero__bg-col {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always; /* 세게 밀어도 한 장씩만 넘어감 */
+  }
+
+  /* 한 장씩 보이므로 반반 구도(왼쪽/오른쪽 끝 기준)가 아니라 가운데 기준으로 보여줌 */
+  .hero__bg-img--left,
+  .hero__bg-img--right {
+    object-position: center top;
+  }
+}

@@ -162,11 +162,70 @@
   .sns__gallery {
     margin-top: var(--space-40);
   }
+
+  /* [사용자 지시] 태블릿·모바일: 소개 글과 SNS 아이콘을 "Follow Us / SNS" 제목 오른쪽에 나란히 (웹은 시안 그대로).
+     제목+선 묶음은 그대로 두고(선은 제목 묶음 기준 절대 위치), 글+아이콘 묶음을 오른쪽에 세로로 */
+  .sns__intro {
+    display: flex;
+    gap: var(--space-24);
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .sns__head {
+    position: relative;
+    flex: none;
+    min-height: calc(var(--sns-line-y) + 3px);
+  }
+
+  .sns__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sns__desc {
+    position: static;
+    width: auto;
+    max-width: var(--sns-desc-w-wide);
+  }
+
+  .sns__icons {
+    position: static;
+    margin-top: var(--space-16);
+    margin-left: var(--sns-desc-x);
+  }
 }
 
-/* 모바일: 갤러리가 작아져 72px 원형 버튼이 이미지를 가리므로 숨김 */
+/* 모바일(767px 이하): 갤러리가 작아져 72px 원형 버튼을 이미지 경계에 걸쳐 두면 사진을 가리므로(이전엔 숨김),
+   [사용자 지시] 같은 시안 스타일의 원형 화살표를 갤러리 아래 오른쪽 끝에 둠 (STORES 모바일 화살표와 같은 크기·간격).
+   태블릿(768~1199px)과 웹은 그대로 */
 @media (max-width: 767px) {
+  .sns__gallery {
+    margin-bottom: calc(var(--space-24) + var(--round-btn-size)); /* 아래에 놓이는 버튼 자리 */
+  }
+
   .sns__gallery .round-btn {
-    display: none;
+    top: 100%;
+    right: calc(var(--round-btn-size) + var(--stores-pager-gap));
+    left: auto;
+    margin-top: var(--space-24);
+  }
+
+  .sns__gallery .round-btn--next {
+    right: 0;
+    left: auto;
+  }
+
+  /* 시안의 원은 "흰색 62%" 라 사진 위에서만 보이고 흰 배경에서는 안 보임 → 아래에 놓인 버튼은 STORES 와 같은 회색 윤곽 원으로 (화살표 위치는 그대로) */
+  .sns__gallery .round-btn__circle {
+    visibility: hidden;
+  }
+
+  .sns__gallery .round-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--color-gray-ctrl);
+    border-radius: 50%;
   }
 }

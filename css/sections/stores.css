@@ -186,4 +186,9 @@
   .stores {
     --stores-image-ratio: 1 / 1;
   }
+
+  /* [사용자 지시] 모바일에서만: 하단 원형 화살표(이전/다음)를 오른쪽 끝으로. 웹·태블릿은 그대로 */
+  .store-info__pager {
+    justify-content: flex-end;
+  }
 }
