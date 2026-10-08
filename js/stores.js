@@ -1,5 +1,7 @@
 /* ==========================================================================
-   Stores 슬라이더 — 매장 3개 순환 전환 (전환 효과 없이 즉시 변경)
+   Stores 슬라이더 — 매장 3개 순환 전환
+   - [사용자 지시(시안 외 효과)] 넘길 때 살짝 효과: 다음 → 새 내용이 오른쪽에서, 이전 → 왼쪽에서 살짝 밀려 들어오며 선명해짐.
+     이미지가 먼저, 글씨가 조금씩 늦게 따라옴. 값은 tokens.css 의 --stores-slide-ms / --stores-slide-shift. 모션 줄이기면 효과 없이 즉시 변경
    - 이전/다음 버튼: 메인 이미지, 세로 라벨, 번호, 매장 정보가 함께 바뀜
    - 오른쪽 "다음 매장" 미리보기: 항상 다음 순서 매장의 이미지
    - 03에서 다음 → 01, 01에서 이전 → 03
@@ -53,6 +55,15 @@
   let current = 0;
   const total = STORES.length;
 
+  const rootStyle = getComputedStyle(document.documentElement);
+  const token = (name, fallback) => {
+    const value = parseFloat(rootStyle.getPropertyValue(name));
+    return Number.isFinite(value) ? value : fallback;
+  };
+  const SLIDE_MS = token('--stores-slide-ms', 500);
+  const SHIFT = token('--stores-slide-shift', 28);
+  const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
   // 전환 시 이미지가 비어 보이지 않도록 미리 불러옴
   STORES.forEach((store) => {
     new Image().src = store.image;
@@ -92,14 +103,40 @@
     els.preview.alt = upcoming.alt;
   };
 
+  // 새 내용이 direction(+1 오른쪽에서 / −1 왼쪽에서)으로 살짝 밀려 들어오며 선명해짐. 끝나면 속성이 남지 않음(fill: backwards)
+  const slideIn = (direction) => {
+    if (reduceQuery.matches || !els.image.animate) return;
+    const targets = [
+      [els.image, 1, 0],
+      [els.preview, 1, 60],
+      [els.label.closest('.store-card__indicator'), 0.6, 80],
+      [els.name, 0.6, 100],
+      [els.address, 0.6, 150],
+      [els.phone, 0.6, 200],
+      [els.hours, 0.6, 250],
+    ];
+    targets.forEach(([el, scale, delay]) => {
+      el.getAnimations().forEach((animation) => animation.cancel());
+      el.animate(
+        [
+          { opacity: 0, transform: `translateX(${direction * SHIFT * scale}px)` },
+          { opacity: 1, transform: 'translateX(0)' },
+        ],
+        { duration: SLIDE_MS, delay, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' }
+      );
+    });
+  };
+
   els.prev.addEventListener('click', () => {
     current = (current - 1 + total) % total;
     render();
+    slideIn(-1);
   });
 
   els.next.addEventListener('click', () => {
     current = (current + 1) % total;
     render();
+    slideIn(1);
   });
 
   render();

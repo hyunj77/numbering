@@ -25,11 +25,6 @@
   background: var(--header-bg-scrolled);
 }
 
-/* 스크롤된 상태에서 모바일 메뉴가 열리면 헤더를 패널(--color-black)과 같은 불투명 검정으로 맞춤 */
-.site-header.is-scrolled.is-menu-open {
-  background: var(--color-black);
-}
-
 .site-header__logo,
 .gnb,
 .utils {
@@ -116,8 +111,8 @@
   }
 }
 
-/* 줄어든 헤더: GNB 글자 잉크 중심이 헤더 중심에 오도록 박스를 --header-gnb-ink-shift 만큼 내림 (1200px 이상. 그 미만은 .gnb 가 메뉴 패널) */
-@media (min-width: 1200px) {
+/* 줄어든 헤더: GNB 글자 잉크 중심이 헤더 중심에 오도록 박스를 --header-gnb-ink-shift 만큼 내림 (1024px 이상. 그 미만은 .gnb 가 오른쪽에서 나오는 드로어) */
+@media (min-width: 1024px) {
   .site-header.is-scrolled .gnb {
     top: calc(50% - var(--header-gnb-h) / 2 + var(--header-gnb-ink-shift));
   }
@@ -132,17 +127,12 @@
   display: block;
   width: var(--gnb-w, auto);
   height: var(--header-gnb-h);
-  font-size: var(--fs-16);
+  /* [사용자 지시] GNB 글자 크기를 LANGUAGE 와 같게(14px). 시안은 16px 였음 */
+  font-size: var(--fs-14);
   font-weight: var(--fw-regular);
-  letter-spacing: var(--ls-inter-16);
+  letter-spacing: var(--ls-inter-14);
+  padding-top: var(--header-gnb-text-shift); /* 14px 로 줄어 글자가 박스 위쪽에 붙으므로 LANGUAGE 와 같은 높이로 내림 */
 }
-
-.gnb__link--shop       { --gnb-w: var(--gnb-w-shop); }
-.gnb__link--about      { --gnb-w: var(--gnb-w-about); }
-.gnb__link--stores     { --gnb-w: var(--gnb-w-stores); }
-.gnb__link--membership { --gnb-w: var(--gnb-w-membership); }
-.gnb__link--help       { --gnb-w: var(--gnb-w-help); }
-.gnb__link--review     { --gnb-w: var(--gnb-w-review); }
 
 /* ---------- Utilities (LANGUAGE + 아이콘 4) ---------- */
 .utils {
@@ -155,7 +145,10 @@
 }
 
 .utils__lang {
+  display: block;
   width: var(--header-lang-w);
+  color: inherit;
+  cursor: pointer;
   padding-top: calc(1px + var(--inter-shift-y)); /* Figma pt 1px + Pretendard 보정 */
   font-size: var(--fs-14);
   font-weight: var(--fw-regular);
@@ -166,7 +159,6 @@
 .utils__icons {
   display: flex;
   gap: var(--header-icon-gap);
-  overflow: clip;
 }
 
 .utils__icon {
@@ -181,8 +173,8 @@
   object-fit: cover;
 }
 
-/* [사용자 지시(시안 외 변경)] 햄버거 버튼은 태블릿·모바일(1199px 이하)에서만 보임. 데스크톱(1200px 이상)에서는 숨김 (시안에는 있던 4번째 아이콘) */
-@media (min-width: 1200px) {
+/* [사용자 지시(시안 외 변경)] 햄버거 버튼은 태블릿·모바일(1023px 이하)에서만 보임. 데스크톱(1024px 이상)에서는 숨김 (시안에는 있던 4번째 아이콘) */
+@media (min-width: 1024px) {
   [data-menu-toggle] {
     display: none;
   }
@@ -252,34 +244,11 @@
 }
 
 /* ==========================================================================
-   Tablet / Mobile — GNB는 햄버거 메뉴로 전환 (시안 없음)
+   Tablet / Mobile (1023px 이하, 사용자 지시) — GNB 와 LANGUAGE 는 숨기고, 햄버거를 누르면 오른쪽에서 전체 메뉴 드로어가 밀려 나옴
+   드로어 안의 모양은 css/sections/dropdown.css
    ========================================================================== */
-@media (max-width: 1199px) {
-  .gnb {
-    display: none;
-    top: 100%; /* 헤더 높이(74px → 스크롤 시 56px)를 따라가 틈/겹침 없이 붙음 */
-    right: 0;
-    left: 0;
-    padding: var(--space-16) var(--header-logo-x);
-    transform: none;
-    background: var(--color-black);
-  }
-
-  .site-header.is-menu-open .gnb {
-    display: block;
-  }
-
-  .gnb__list {
-    flex-direction: column;
-  }
-
-  .gnb__link {
-    width: auto;
-  }
-}
-
-@media (max-width: 767px) {
-  .utils__lang {
+@media (max-width: 1023px) {
+  .utils__item--lang {
     display: none;
   }
 }

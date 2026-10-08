@@ -8,6 +8,7 @@
   padding-top: var(--stores-pt);
   padding-bottom: var(--stores-pb);
   background: var(--color-white);
+  overflow-x: clip; /* 넘길 때 글씨가 옆에서 밀려 들어오는 동안 화면 밖으로 나가 가로 스크롤이 생기지 않게 */
 }
 
 /* 다크 배경: 상단 5px은 흰색 */
@@ -35,6 +36,7 @@
 .store-card__image {
   width: var(--stores-image-w);
   aspect-ratio: var(--stores-image-ratio);
+  overflow: clip; /* 넘길 때 사진이 옆에서 밀려 들어와도 칸 밖으로 나가지 않게 (js/stores.js) */
 }
 
 .store-card__image img,
@@ -153,6 +155,7 @@
 /* ---------- 다음 매장 이미지 ---------- */
 .store-next {
   aspect-ratio: var(--stores-next-ratio);
+  overflow: clip;
 }
 
 /* ==========================================================================

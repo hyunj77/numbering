@@ -1,7 +1,7 @@
 /* ==========================================================================
    Design Tokens — NUMBERING (Figma: 선현지 / node 49:124, Desktop 1920)
    모든 값은 피그마에서 읽은 값. 추정값은 [추정] 표기.
-   브레이크포인트(미디어쿼리는 var 사용 불가): desktop ≥1200 / tablet 768~1199 / mobile <768
+   브레이크포인트(미디어쿼리는 var 사용 불가): desktop ≥1200 / tablet 768~1199 / mobile <768 (단, 헤더 메뉴는 1024px 기준: ≥1024 데스크톱 GNB, <1024 햄버거 드로어)
    ========================================================================== */
 
 :root {
@@ -102,7 +102,8 @@
 
   /* [사용자 지시(시안 외 효과)] 헤더 고정 + 스크롤(10px 이상) 시 배경. 불투명도는 이 한 곳에서 조절 */
   --header-h-scrolled: 56px;         /* 스크롤 시 헤더 높이 (맨 위는 --header-h 74px) */
-  --header-gnb-ink-shift: 4px;       /* [추정] 줄어든 헤더에서 GNB 글자를 가운데로 맞추는 내림 값 (글자가 28px 박스 윗부분에 놓여 잉크 중심이 박스 중심보다 4px 위, 실측) */
+  --header-gnb-text-shift: 3px;      /* [사용자 지시 후 추정] GNB 14px 로 줄인 뒤 GNB 글자를 LANGUAGE 와 같은 높이로 맞추는 내림 값 (실측: 맨 위에서 3px 높았음) */
+  --header-gnb-ink-shift: 2px;       /* [추정] 줄어든 헤더에서 GNB 글자를 가운데로 맞추는 내림 값 (GNB 를 14px 로 줄인 뒤 text-shift 3px 와 함께 실측해 4px → 2px 로 조정) */
   --header-bg-scrolled: rgb(0 0 0 / 0.8);
   --header-scroll-threshold: 10px;   /* 문서용. 실제 값은 js/header.js 의 SCROLL_THRESHOLD 와 같아야 함 */
   --motion-duration: 0.3s;
@@ -113,13 +114,27 @@
   --hover-bar-extend: 0.35em;                   /* 글자 좌우로 띠가 넓어지는 만큼 (Adsila 의 padding 0.35em) */
   --hover-bar-duration: 0.5s;                   /* Adsila 값 */
   --hover-bar-ease: cubic-bezier(0.2, 1, 0.3, 1); /* Adsila 값 */
-  /* GNB 항목 박스 너비 (Shop / About / Stores / Membership / Help / Review) */
-  --gnb-w-shop: 44px;
-  --gnb-w-about: 47px;
-  --gnb-w-stores: 49px;
-  --gnb-w-membership: 100px;
-  --gnb-w-help: 40px;
-  --gnb-w-review: 55px;
+  /* [사용자 지시(시안 외 변경)] 메뉴 재구성: SHOP / NEW & BEST / CAMPAIGN / ABOUT / COMMUNITY + 하위 드롭다운 + 언어·검색·마이페이지.
+     항목 너비는 글자 폭을 따름(예전 시안 6개 항목의 고정 너비 토큰 제거). 드롭다운 모양은 사용자가 준 언어 메뉴 스크린샷(흰 패널, 선택=검정, 나머지=회색)을 기준으로 한 [추정] */
+  --dd-bg: #fff;
+  --dd-ink: #000;
+  --dd-ink-muted: #929193;           /* 회색 항목 (--color-gray-text 와 같은 값) */
+  --dd-fs: 14px;
+  --dd-pad: 20px;                    /* 패널 안쪽 여백 */
+  --dd-row-py: 8px;                  /* 항목 위아래 여백 (행 간격) */
+  --dd-bridge: 16px;                 /* 메뉴 글자와 패널 사이 투명한 다리: 마우스가 지나가도 패널이 안 닫힘 */
+  --dd-shift: 8px;                   /* 열릴 때 아래에서 올라오는 거리 */
+  --dd-duration: 0.25s;
+  /* SHOP 메가메뉴 (사용자 지시: 에디토리얼 보더-그리드). 색은 명세의 #f9f9f9 / neutral-200·300 / neutral-600 값 */
+  --mega-bg: #f9f9f9;
+  --mega-border: #e5e5e5;            /* neutral-200: 바깥 테두리 */
+  --mega-divider: #d4d4d4;           /* neutral-300: 컬럼 사이 세로선, 이미지 카드 테두리 */
+  --mega-ink-muted: #525252;         /* neutral-600: 하위 항목 */
+  --mega-w: 920px;
+  --mega-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+  --drawer-w: 380px;                 /* 태블릿·모바일 메뉴 드로어 최대 너비 (화면의 86%와 비교해 작은 값) [추정] */
+  --drawer-duration: 0.35s;          /* 드로어가 밀려 나오는 시간 [추정] */
+  --dd-shadow: 0 10px 28px rgb(0 0 0 / 0.18);
 
   /* ---------- Hero ---------- */
   --hero-min-h: 560px;               /* 사용자 지시(시안 외): Hero = 창 높이(100svh), 이보다 낮은 창에서는 이 높이로 멈춤 */
@@ -174,6 +189,8 @@
 
 /* ---------- Stores (좌표는 Figma 1920 기준) ---------- */
 :root {
+  --stores-slide-ms: 500;              /* [사용자 지시(시안 외 효과)] 매장 넘길 때 밀려 들어오는 시간(ms) [추정] */
+  --stores-slide-shift: 28;            /* 밀려 들어오는 거리(px, 이미지 기준. 글씨는 60%) [추정] */
   --stores-top-gap: 5px;               /* 다크 배경이 시작되는 y (위 5px은 흰색) */
   --stores-pt: 78px;
   --stores-pb: 52px;

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/sections/hero.css">
+  <link rel="stylesheet" href="css/sections/dropdown.css">
   <link rel="stylesheet" href="css/sections/best.css">
   <link rel="stylesheet" href="css/sections/collection.css">
   <link rel="stylesheet" href="css/sections/stores.css">
@@ -27,21 +28,80 @@
     </a>
 
     <nav class="gnb" id="gnb" aria-label="주요 메뉴">
+      <div class="gnb__head">
+        <span class="gnb__head-title">MENU</span>
+        <button class="gnb__close" type="button" aria-label="메뉴 닫기" data-menu-close>&times;</button>
+      </div>
       <ul class="gnb__list">
-        <li><a class="gnb__link gnb__link--shop" href="#"><span class="gnb__text">Shop</span></a></li>
-        <li><a class="gnb__link gnb__link--about" href="#"><span class="gnb__text">About</span></a></li>
-        <li><a class="gnb__link gnb__link--stores" href="#"><span class="gnb__text">Stores</span></a></li>
-        <li><a class="gnb__link gnb__link--membership" href="#"><span class="gnb__text">Membership</span></a></li>
-        <li><a class="gnb__link gnb__link--help" href="#"><span class="gnb__text">Help</span></a></li>
-        <li><a class="gnb__link gnb__link--review" href="#"><span class="gnb__text">Review</span></a></li>
+        <li class="gnb__item gnb__item--mega" data-dd>
+          <a class="gnb__link" href="#" aria-haspopup="true" aria-expanded="false" data-dd-toggle><span class="gnb__text">SHOP</span></a>
+          <div class="dd dd--mega"><div class="dd__panel">
+            <div class="dd__group"><p class="dd__title">Category</p><ul><li><a href="#">ALL</a></li><li><a href="#">NECKLACE</a></li><li><a href="#">RING</a></li><li><a href="#">EARRING</a></li><li><a href="#">BRACELET</a></li><li><a href="#">ANKLET</a></li><li><a href="#">ACC/HAIR</a></li></ul></div>
+            <div class="dd__group"><p class="dd__title">Line</p><ul><li><a href="#">CARAT NUMBERING</a></li><li><a href="#">SILVER 925</a></li><li><a href="#">GOLD PLATED</a></li><li><a href="#">N-dia Collection</a></li></ul></div>
+            <div class="dd__group"><p class="dd__title">Special</p><ul><li><a href="#">GIFT SELECTION</a></li><li><a href="#">NEW ARRIVALS</a></li><li><a href="#">BESTSELLERS</a></li><li><a href="#">ARCHIVE</a></li></ul></div>
+            <div class="dd__group dd__featured">
+              <p class="dd__title">Featured</p>
+              <a class="dd__card" href="#">
+                <img src="assets/images/best/top20-19.jpg" alt="은색 체인 디자인 반지" loading="lazy">
+                <span class="dd__caption">SILVER 925 RINGS</span>
+              </a>
+              <a class="dd__card" href="#">
+                <img src="assets/images/collection/collection-story.jpg" alt="터키석 하트 펜던트 목걸이를 착용한 모델" loading="lazy">
+                <span class="dd__caption">N-dia Collection <span class="dd__shop-now">SHOP NOW</span></span>
+              </a>
+            </div>
+          </div></div>
+        </li>
+        <li class="gnb__item" data-dd>
+          <a class="gnb__link" href="#" aria-haspopup="true" aria-expanded="false" data-dd-toggle><span class="gnb__text">NEW &amp; BEST</span></a>
+          <div class="dd"><div class="dd__panel"><ul><li><a href="#">New Arrivals</a></li><li><a href="https://numberingwebsite.com/category/top20/134/?cate_no=134">TOP 20</a></li></ul></div></div>
+        </li>
+        <li class="gnb__item" data-dd>
+          <a class="gnb__link" href="#" aria-haspopup="true" aria-expanded="false" data-dd-toggle><span class="gnb__text">CAMPAIGN</span></a>
+          <div class="dd"><div class="dd__panel"><ul><li><a href="#">Current Campaign</a></li><li><a href="#">Archive</a></li></ul></div></div>
+        </li>
+        <li class="gnb__item" data-dd>
+          <a class="gnb__link" href="#" aria-haspopup="true" aria-expanded="false" data-dd-toggle><span class="gnb__text">ABOUT</span></a>
+          <div class="dd"><div class="dd__panel"><ul><li><a href="#">Brand Story</a></li><li><a href="https://numberingwebsite.com/shopinfo/stockist.html">Stores</a></li></ul></div></div>
+        </li>
+        <li class="gnb__item" data-dd>
+          <a class="gnb__link" href="#" aria-haspopup="true" aria-expanded="false" data-dd-toggle><span class="gnb__text">COMMUNITY</span></a>
+          <div class="dd"><div class="dd__panel"><ul><li><a href="#">Membership</a></li><li><a href="#">Review</a></li><li><a href="#">Notice</a></li></ul></div></div>
+        </li>
+        <li class="gnb__item gnb__item--drawer-only" data-dd>
+          <a class="gnb__link" href="#" aria-haspopup="true" aria-expanded="false" data-dd-toggle><span class="gnb__text">CS Center</span></a>
+          <div class="dd"><div class="dd__panel"><ul><li><a href="#">Login</a></li><li><a href="#">Order</a></li><li><a href="#">Help</a></li><li><a href="#">Q&amp;A</a></li><li><a href="#">FAQ</a></li></ul></div></div>
+        </li>
       </ul>
     </nav>
+    <div class="gnb-overlay" data-menu-close aria-hidden="true"></div>
 
     <div class="utils">
-      <a class="utils__lang" href="#">LANGUAGE</a>
+      <div class="utils__item utils__item--lang" data-dd>
+        <button class="utils__lang" type="button" aria-haspopup="listbox" aria-expanded="false" data-dd-toggle>LANGUAGE</button>
+        <div class="dd dd--right dd--lang"><div class="dd__panel">
+          <p class="dd__current" data-lang-current>Korean / KRW</p>
+          <ul role="listbox" aria-label="언어 선택">
+            <li><button type="button" role="option" aria-selected="true" data-lang="Korean / KRW">Korean / KRW</button></li>
+            <li><button type="button" role="option" aria-selected="false" data-lang="English / USD">English / USD</button></li>
+            <li><button type="button" role="option" aria-selected="false" data-lang="Japanese / JPY">Japanese / JPY</button></li>
+          </ul>
+        </div></div>
+      </div>
       <div class="utils__icons">
-        <a class="utils__icon" href="#"><img src="assets/icons/search-transparent.png" alt="검색"></a>
-        <a class="utils__icon" href="#"><img src="assets/icons/account-transparent.png" alt="내 계정"></a>
+        <div class="utils__item" data-dd>
+          <button class="utils__icon" type="button" aria-label="검색" aria-haspopup="true" aria-expanded="false" data-dd-toggle><img src="assets/icons/search-transparent.png" alt=""></button>
+          <div class="dd dd--right dd--search"><div class="dd__panel">
+            <form class="dd__search" role="search" data-search-form>
+              <input type="search" name="q" placeholder="Search" aria-label="상품 검색" autocomplete="off">
+              <button type="submit">Search</button>
+            </form>
+          </div></div>
+        </div>
+        <div class="utils__item utils__item--hover" data-dd>
+          <button class="utils__icon" type="button" aria-label="내 계정" aria-haspopup="true" aria-expanded="false" data-dd-toggle><img src="assets/icons/account-transparent.png" alt=""></button>
+          <div class="dd dd--right dd--account"><div class="dd__panel"><ul><li><a href="#">Login</a></li><li><a href="#">Order</a></li></ul><div class="dd__group"><p class="dd__title">CS Center</p><ul><li><a href="#">Help</a></li><li><a href="#">Q&amp;A</a></li><li><a href="#">FAQ</a></li></ul></div></div></div>
+        </div>
         <a class="utils__icon" href="#"><img src="assets/icons/cart.png" alt="장바구니"></a>
         <button class="utils__icon" type="button" aria-controls="gnb" aria-expanded="false" data-menu-toggle>
           <img src="assets/icons/menu.png" alt="메뉴">
@@ -333,6 +393,7 @@
   <script src="js/reveal.js" defer></script>
   <script src="js/header.js" defer></script>
   <script src="js/nav.js" defer></script>
+  <script src="js/dropdown.js" defer></script>
   <script src="js/tabs.js" defer></script>
   <script src="js/stores.js" defer></script>
   <script src="js/sns.js" defer></script>
